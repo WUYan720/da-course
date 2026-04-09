@@ -62,12 +62,20 @@ const Navbar: React.FC = () => {
                 </button>
               </div>
             ) : (
-              <Link
-                to="/login"
-                className="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium hover:bg-blue-50 transition-colors"
-              >
-                登录/注册
-              </Link>
+              <div className="flex items-center space-x-3">
+                <Link
+                  to="/courses"
+                  className="text-white hover:text-blue-200 transition-colors font-medium"
+                >
+                  开始试用
+                </Link>
+                <Link
+                  to="/login"
+                  className="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium hover:bg-blue-50 transition-colors"
+                >
+                  登录/注册
+                </Link>
+              </div>
             )}
           </div>
 
@@ -127,13 +135,22 @@ const Navbar: React.FC = () => {
                 </button>
               </>
             ) : (
-              <Link
-                to="/login"
-                onClick={() => setIsMenuOpen(false)}
-                className="block px-3 py-2 rounded-md bg-white text-blue-600 font-medium"
-              >
-                登录/注册
-              </Link>
+              <>
+                <Link
+                  to="/courses"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block px-3 py-2 rounded-md hover:bg-blue-700"
+                >
+                  开始试用
+                </Link>
+                <Link
+                  to="/login"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block px-3 py-2 rounded-md bg-white text-blue-600 font-medium"
+                >
+                  登录/注册
+                </Link>
+              </>
             )}
           </div>
         </div>

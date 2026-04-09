@@ -16,7 +16,7 @@ type LearningMode = 'learn' | 'exercise' | 'quiz' | 'complete';
 const Learn: React.FC = () => {
   const { courseId, lessonIndex } = useParams<{ courseId: string; lessonIndex: string }>();
   const navigate = useNavigate();
-  const { courses, currentCourse, completeLesson, userProgress } = useAppStore();
+  const { courses, currentCourse, completeLesson, userProgress, isAuthenticated, login } = useAppStore();
   
   const course = courses.find(c => c.id === courseId) || currentCourse;
   const index = parseInt(lessonIndex || '0');
@@ -61,6 +61,11 @@ const Learn: React.FC = () => {
   };
 
   const submitExercises = () => {
+    if (!isAuthenticated) {
+      alert('请先登录以保存练习结果');
+      navigate('/login');
+      return;
+    }
     setExerciseSubmitted(true);
   };
 
@@ -69,6 +74,11 @@ const Learn: React.FC = () => {
   };
 
   const submitQuiz = () => {
+    if (!isAuthenticated) {
+      alert('请先登录以保存测验成绩和解锁成就');
+      navigate('/login');
+      return;
+    }
     let correct = 0;
     lesson.quiz.forEach(question => {
       if (quizAnswers[question.id] === question.correctAnswer) {

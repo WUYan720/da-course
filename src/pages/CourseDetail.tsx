@@ -26,10 +26,6 @@ const CourseDetail: React.FC = () => {
   };
 
   const handleStartLearning = () => {
-    if (!isAuthenticated) {
-      navigate('/login');
-      return;
-    }
     setCurrentCourse(course);
     navigate(`/courses/${course.id}/learn/0`);
   };

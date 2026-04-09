@@ -45,13 +45,13 @@ const Home: React.FC = () => {
               to="/courses"
               className="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-50 transition-all hover:scale-105 shadow-lg"
             >
-              开始学习 <ArrowRight className="inline ml-2 h-5 w-5" />
+              开始试用 <ArrowRight className="inline ml-2 h-5 w-5" />
             </Link>
             <Link
               to="/login"
               className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-blue-600 transition-all"
             >
-              注册账号
+              登录/注册
             </Link>
           </div>
         </div>
