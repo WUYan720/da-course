@@ -13,6 +13,7 @@ export interface Lesson {
   id: string;
   title: string;
   content: string;
+  video?: string; // 视频 URL
   exercises: Exercise[];
   quiz: QuizQuestion[];
 }

@@ -161,7 +161,21 @@ const Learn: React.FC = () => {
 
         <div className="p-8">
           {mode === 'learn' && (
-            <div className="prose max-w-none">
+            <div className="prose max-w-none space-y-8">
+              {lesson.video && (
+                <div className="rounded-2xl overflow-hidden shadow-lg">
+                  <div className="aspect-video relative">
+                    <iframe
+                      src={lesson.video}
+                      title={lesson.title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full"
+                    />
+                  </div>
+                </div>
+              )}
               <div className="whitespace-pre-line text-gray-800 text-lg leading-relaxed">
                 {lesson.content}
               </div>

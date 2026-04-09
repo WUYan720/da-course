@@ -14,6 +14,7 @@ export const courses: Course[] = [
         id: '1-1',
         title: 'Python 入门',
         content: 'Python 是一种高级编程语言，具有简洁易读的语法。它在数据分析、人工智能、Web开发等领域广泛应用。\n\n## 基础语法\n\n### 变量和数据类型\n```python\n# 整数\nage = 25\n\n# 浮点数\nprice = 19.99\n\n# 字符串\nname = "张三"\n\n# 布尔值\nis_student = True\n```\n\n### 列表和字典\n```python\n# 列表\nnumbers = [1, 2, 3, 4, 5]\n\n# 字典\nstudent = {\n    "name": "李四",\n    "age": 20,\n    "major": "商务数据分析"\n}\n```',
+        video: 'https://www.youtube.com/embed/rfscVS0vtbw',
         exercises: [
           {
             id: '1-1-1',
@@ -50,6 +51,7 @@ export const courses: Course[] = [
         id: '2-1',
         title: 'Excel 公式与函数',
         content: 'Excel 提供了丰富的函数来处理数据。常用函数包括：\n\n## 常用函数\n\n### 数学函数\n- SUM(): 求和\n- AVERAGE(): 平均值\n- MAX(): 最大值\n- MIN(): 最小值\n\n### 逻辑函数\n- IF(): 条件判断\n- AND(): 且\n- OR(): 或\n\n### 查找函数\n- VLOOKUP(): 垂直查找\n- INDEX(): 索引\n- MATCH(): 匹配',
+        video: 'https://www.youtube.com/embed/7B2x_7GvQ3Q',
         exercises: [
           {
             id: '2-1-1',
@@ -86,6 +88,7 @@ export const courses: Course[] = [
         id: '3-1',
         title: 'Matplotlib 基础',
         content: 'Matplotlib 是 Python 中最常用的数据可视化库。\n\n## 基础绘图\n\n```python\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n# 创建数据\nx = np.linspace(0, 10, 100)\ny = np.sin(x)\n\n# 绘制折线图\nplt.figure(figsize=(10, 6))\nplt.plot(x, y)\nplt.title(\'正弦曲线\')\nplt.xlabel(\'x\')\nplt.ylabel(\'sin(x)\')\nplt.grid(True)\nplt.show()\n```',
+        video: 'https://www.youtube.com/embed/UO98lJQ3QGI',
         exercises: [
           {
             id: '3-1-1',
@@ -122,6 +125,7 @@ export const courses: Course[] = [
         id: '4-1',
         title: '描述性统计',
         content: '描述性统计用于总结和描述数据的基本特征。\n\n## 集中趋势\n- 均值（Mean）\n- 中位数（Median）\n- 众数（Mode）\n\n## 离散程度\n- 方差（Variance）\n- 标准差（Standard Deviation）\n- 四分位数（Quartiles）',
+        video: 'https://www.youtube.com/embed/0M0tXaQd2Ss',
         exercises: [
           {
             id: '4-1-1',
@@ -158,6 +162,7 @@ export const courses: Course[] = [
         id: '5-1',
         title: '机器学习概述',
         content: '机器学习是人工智能的一个分支，使计算机能够从数据中学习。\n\n## 主要类型\n\n### 监督学习\n- 分类（Classification）\n- 回归（Regression）\n\n### 无监督学习\n- 聚类（Clustering）\n- 降维（Dimensionality Reduction）\n\n### 强化学习\n- 智能体与环境交互\n- 通过奖励学习',
+        video: 'https://www.youtube.com/embed/ukzFI9rgwfU',
         exercises: [
           {
             id: '5-1-1',
