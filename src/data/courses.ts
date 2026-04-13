@@ -185,6 +185,43 @@ export const courses: Course[] = [
         ]
       }
     ]
+  },
+  {
+    id: '6',
+    title: '数据分析技术',
+    description: '掌握现代数据分析技术栈，包括数据清洗、处理和可视化',
+    category: '技术栈',
+    difficulty: 'intermediate',
+    duration: '35小时',
+    image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=data%20analysis%20techniques%20course%20cover&image_size=square_hd',
+    lessons: [
+      {
+        id: '6-1',
+        title: '数据分析技术概述',
+        content: '数据分析技术是指用于收集、处理、分析和可视化数据的工具和方法。\n\n## 核心技术栈\n\n### 数据处理\n- Python 生态系统（Pandas, NumPy）\n- SQL 数据库查询\n- 数据清洗和转换\n\n### 数据可视化\n- Matplotlib 和 Seaborn\n- Tableau 和 Power BI\n- 交互式仪表板\n\n### 大数据处理\n- Hadoop 和 Spark\n- 分布式计算\n- 数据湖和数据仓库',
+        video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        exercises: [
+          {
+            id: '6-1-1',
+            question: 'Python 中用于数据处理的主要库是？',
+            type: 'multiple-choice',
+            options: ['Matplotlib', 'Pandas', 'NumPy', 'Scikit-learn'],
+            answer: 'Pandas',
+            explanation: 'Pandas 是 Python 中用于数据处理和分析的主要库。'
+          }
+        ],
+        quiz: [
+          {
+            id: '6-1-q1',
+            question: 'SQL 是用于处理大数据的最佳工具。',
+            type: 'true-false',
+            options: ['正确', '错误'],
+            correctAnswer: 1,
+            explanation: 'SQL 适用于关系型数据库，但对于大数据处理，通常使用 Hadoop 或 Spark 等分布式计算框架。'
+          }
+        ]
+      }
+    ]
   }
 ];
 

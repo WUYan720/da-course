@@ -132,6 +132,21 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      <section>
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-3xl p-12 text-white shadow-2xl">
+          <h2 className="text-3xl font-bold mb-6">数据分析技术课程</h2>
+          <p className="text-xl mb-8 max-w-2xl">
+            掌握现代数据分析技术栈，包括数据清洗、处理和可视化，提升您的数据分析能力
+          </p>
+          <Link
+            to="/courses/6"
+            className="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-50 transition-all hover:scale-105 shadow-lg inline-flex items-center"
+          >
+            了解详情 <ArrowRight className="ml-2 h-5 w-5" />
+          </Link>
+        </div>
+      </section>
+
       <section className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-3xl p-12 text-center">
         <h2 className="text-3xl font-bold mb-6 text-gray-800">
           准备好开始学习了吗？
@@ -143,7 +158,7 @@ const Home: React.FC = () => {
           to="/courses"
           className="inline-flex items-center bg-blue-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition-all hover:scale-105 shadow-lg"
         >
-          立即开始 <ArrowRight className="ml-2 h-5 w-5" />
+          浏览所有课程 <ArrowRight className="ml-2 h-5 w-5" />
         </Link>
       </section>
     </div>
