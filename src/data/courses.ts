@@ -188,36 +188,221 @@ export const courses: Course[] = [
   },
   {
     id: '6',
-    title: '数据分析技术',
-    description: '掌握现代数据分析技术栈，包括数据清洗、处理和可视化',
+    title: '数据分析技术平台',
+    description: '一个完整的数据分析技术学习平台，包含数据处理、可视化、大数据分析等核心技术',
     category: '技术栈',
     difficulty: 'intermediate',
-    duration: '35小时',
-    image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=data%20analysis%20techniques%20course%20cover&image_size=square_hd',
+    duration: '50小时',
+    image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=data%20analysis%20platform%20dashboard%20modern%20interface&image_size=square_hd',
     lessons: [
       {
         id: '6-1',
-        title: '数据分析技术概述',
-        content: '数据分析技术是指用于收集、处理、分析和可视化数据的工具和方法。\n\n## 核心技术栈\n\n### 数据处理\n- Python 生态系统（Pandas, NumPy）\n- SQL 数据库查询\n- 数据清洗和转换\n\n### 数据可视化\n- Matplotlib 和 Seaborn\n- Tableau 和 Power BI\n- 交互式仪表板\n\n### 大数据处理\n- Hadoop 和 Spark\n- 分布式计算\n- 数据湖和数据仓库',
+        title: '平台介绍与技术栈概述',
+        content: `欢迎来到数据分析技术平台！本平台旨在帮助您掌握现代数据分析的核心技术。
+
+## 平台特色
+
+### 交互式学习
+- 实时代码编辑器
+- 数据可视化实验室
+- 真实数据集练习
+
+### 技术栈覆盖
+- Python 数据科学生态
+- SQL 数据库技术
+- 数据可视化工具
+- 大数据处理框架
+- 商业智能平台`,
         video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
         exercises: [
           {
             id: '6-1-1',
-            question: 'Python 中用于数据处理的主要库是？',
+            question: '数据分析技术平台的主要特色是什么？',
             type: 'multiple-choice',
-            options: ['Matplotlib', 'Pandas', 'NumPy', 'Scikit-learn'],
-            answer: 'Pandas',
-            explanation: 'Pandas 是 Python 中用于数据处理和分析的主要库。'
+            options: ['理论学习', '交互式实践', '被动观看', '考试认证'],
+            answer: '交互式实践',
+            explanation: '平台的主要特色是提供交互式实践环境，让用户能够实时操作和学习。'
           }
         ],
         quiz: [
           {
             id: '6-1-q1',
-            question: 'SQL 是用于处理大数据的最佳工具。',
+            question: '本平台涵盖了完整的数据分析技术栈。',
+            type: 'true-false',
+            options: ['正确', '错误'],
+            correctAnswer: 0,
+            explanation: '是的，本平台涵盖了从数据处理、可视化到大数据分析的完整技术栈。'
+          }
+        ]
+      },
+      {
+        id: '6-2',
+        title: 'Python 数据处理实验室',
+        content: `通过交互式实验室学习 Python 数据处理技术。
+
+## 核心功能
+
+### 实时代码编辑器
+- 内置 Jupyter 风格编辑器
+- 实时执行代码
+- 数据可视化输出
+
+### 练习数据集
+- 销售数据
+- 用户行为数据
+- 金融市场数据
+- 社交媒体数据`,
+        video: 'https://www.youtube.com/embed/UO98lJQ3QGI',
+        exercises: [
+          {
+            id: '6-2-1',
+            question: 'Python 中用于数据处理的核心库是？',
+            type: 'multiple-choice',
+            options: ['Pandas', 'NumPy', 'Matplotlib', 'Scikit-learn'],
+            answer: 'Pandas',
+            explanation: 'Pandas 是 Python 中用于数据处理和分析的核心库。'
+          }
+        ],
+        quiz: [
+          {
+            id: '6-2-q1',
+            question: 'Jupyter 编辑器可以实时执行代码。',
+            type: 'true-false',
+            options: ['正确', '错误'],
+            correctAnswer: 0,
+            explanation: '是的，Jupyter 编辑器支持实时执行代码并显示结果。'
+          }
+        ]
+      },
+      {
+        id: '6-3',
+        title: '数据可视化仪表板',
+        content: `学习创建交互式数据可视化仪表板。
+
+## 可视化工具
+
+### Python 可视化库
+- Matplotlib
+- Seaborn
+- Plotly
+- Bokeh
+
+### 商业智能工具
+- Tableau
+- Power BI
+- Google Data Studio
+
+### 仪表板设计原则
+- 数据故事讲述
+- 交互设计
+- 视觉层次
+- 响应式布局`,
+        video: 'https://www.youtube.com/embed/rfscVS0vtbw',
+        exercises: [
+          {
+            id: '6-3-1',
+            question: '哪个工具不是商业智能工具？',
+            type: 'multiple-choice',
+            options: ['Tableau', 'Power BI', 'Matplotlib', 'Google Data Studio'],
+            answer: 'Matplotlib',
+            explanation: 'Matplotlib 是 Python 的可视化库，不是商业智能工具。'
+          }
+        ],
+        quiz: [
+          {
+            id: '6-3-q1',
+            question: '数据可视化的核心是展示数据而不是讲述故事。',
             type: 'true-false',
             options: ['正确', '错误'],
             correctAnswer: 1,
-            explanation: 'SQL 适用于关系型数据库，但对于大数据处理，通常使用 Hadoop 或 Spark 等分布式计算框架。'
+            explanation: '数据可视化的核心不仅是展示数据，更重要的是通过数据讲述有意义的故事。'
+          }
+        ]
+      },
+      {
+        id: '6-4',
+        title: '大数据处理平台',
+        content: `了解大数据处理技术和平台。
+
+## 大数据技术
+
+### 分布式计算框架
+- Hadoop
+- Spark
+- Flink
+
+### 数据存储
+- HDFS
+- NoSQL 数据库
+- 数据湖
+- 数据仓库
+
+### 实时数据处理
+- Kafka
+- Stream Processing
+- Real-time Analytics`,
+        video: 'https://www.youtube.com/embed/ukzFI9rgwfU',
+        exercises: [
+          {
+            id: '6-4-1',
+            question: '哪个不是分布式计算框架？',
+            type: 'multiple-choice',
+            options: ['Hadoop', 'Spark', 'Flink', 'MySQL'],
+            answer: 'MySQL',
+            explanation: 'MySQL 是关系型数据库，不是分布式计算框架。'
+          }
+        ],
+        quiz: [
+          {
+            id: '6-4-q1',
+            question: 'Spark 比 Hadoop 处理速度更快。',
+            type: 'true-false',
+            options: ['正确', '错误'],
+            correctAnswer: 0,
+            explanation: '是的，Spark 使用内存计算，比 Hadoop 的磁盘计算速度更快。'
+          }
+        ]
+      },
+      {
+        id: '6-5',
+        title: '综合项目实践',
+        content: `通过综合项目实践应用所学技术。
+
+## 项目案例
+
+### 销售数据分析
+- 销售趋势分析
+- 客户细分
+- 预测模型
+
+### 用户行为分析
+- 漏斗分析
+- 留存率分析
+- 用户画像
+
+### 金融市场分析
+- 股票趋势分析
+- 风险评估
+- 投资组合优化`,
+        video: 'https://www.youtube.com/embed/7B2x_7GvQ3Q',
+        exercises: [
+          {
+            id: '6-5-1',
+            question: '以下哪个不是数据分析项目案例？',
+            type: 'multiple-choice',
+            options: ['销售数据分析', '用户行为分析', '金融市场分析', '网络安全分析'],
+            answer: '网络安全分析',
+            explanation: '网络安全分析不属于传统的数据分析项目案例。'
+          }
+        ],
+        quiz: [
+          {
+            id: '6-5-q1',
+            question: '综合项目实践是学习数据分析的重要环节。',
+            type: 'true-false',
+            options: ['正确', '错误'],
+            correctAnswer: 0,
+            explanation: '是的，通过项目实践可以将理论知识应用到实际场景中，是学习数据分析的重要环节。'
           }
         ]
       }
