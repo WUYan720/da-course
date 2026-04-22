@@ -1,3 +1,8 @@
+export interface Module {
+  name: string;
+  lessonsCount: number;
+}
+
 export interface Course {
   id: string;
   title: string;
@@ -7,6 +12,7 @@ export interface Course {
   duration: string;
   lessons: Lesson[];
   image: string;
+  modules?: Module[];
 }
 
 export interface Lesson {

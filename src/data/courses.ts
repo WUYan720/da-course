@@ -1,1331 +1,1489 @@
-import { Course, Achievement } from '../types';
-
-// Python数据分析AI训练平台课程
-const aiTrainingCourse: Course = {
-  id: '7',
-  title: 'Python数据分析AI训练平台',
-  description: '基于Cloudflare免费资源的Python数据分析实操训练平台，采用"3步认知+10个梯度项目+AI错题倒逼"模式',
-  category: 'AI训练',
-  difficulty: 'beginner',
-  duration: '30小时',
-  image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=python%20data%20analysis%20ai%20training%20platform%20modern%20interface&image_size=square_hd',
-  lessons: [
-    {
-      id: '7-1',
-      title: '第一天：底层认知',
-      content: `# 第一天：底层认知
-
-## 思维模型
-
-### 数据分析的核心思维
-- 问题导向：以业务问题为核心，数据为工具
-- 逻辑推理：从数据到洞察的严谨推导
-- 可视化表达：将复杂数据转化为清晰图表
-- 批判性思维：对数据和结论保持怀疑态度
-
-### 数据分析的流程
-1. 问题定义：明确分析目标和业务问题
-2. 数据收集：获取相关数据集
-3. 数据清洗：处理缺失值、异常值
-4. 探索分析：发现数据中的模式和趋势
-5. 建模分析：应用统计或机器学习方法
-6. 结果呈现：用图表和报告展示发现
-7. 行动建议：基于分析结果提出建议
-
-## 行业争议
-
-### 数据分析的局限性
-- 数据质量问题：数据不完整、不准确
-- 相关性 vs 因果性：相关不等于因果
-- 过度拟合：模型过于复杂，泛化能力差
-- 伦理问题：数据隐私、算法偏见
-
-### 数据分析的未来趋势
-- 自动化分析：AI辅助数据分析
-- 实时分析：实时处理和分析数据
-- 跨领域融合：结合领域知识和数据分析
-- 可解释性：提高模型的可解释性
-
-## 辨析题
-
-1. 数据分析的核心是统计工具的使用。
-   - 错误：数据分析的核心是解决业务问题，工具只是手段
-
-2. 数据越多，分析结果越准确。
-   - 错误：数据质量比数量更重要
-
-3. 机器学习模型可以完全替代人工分析。
-   - 错误：机器学习是辅助工具，需要人类的专业判断
-
-4. 相关性分析可以证明因果关系。
-   - 错误：相关性不等于因果性，需要实验验证`,
-      exercises: [
-        {
-          id: '7-1-1',
-          question: '数据分析的核心是什么？',
-          type: 'multiple-choice',
-          options: ['统计工具的使用', '解决业务问题', '数据可视化', '机器学习模型'],
-          answer: '解决业务问题',
-          explanation: '数据分析的核心是解决业务问题，工具只是手段。'
-        },
-        {
-          id: '7-1-2',
-          question: '数据分析流程的第一步是什么？',
-          type: 'multiple-choice',
-          options: ['数据收集', '数据清洗', '问题定义', '探索分析'],
-          answer: '问题定义',
-          explanation: '数据分析流程的第一步是明确分析目标和业务问题。'
-        },
-        {
-          id: '7-1-3',
-          question: '以下哪种说法是正确的？',
-          type: 'multiple-choice',
-          options: ['数据越多越好', '相关性等于因果性', '机器学习可以完全替代人工分析', '数据质量比数量更重要'],
-          answer: '数据质量比数量更重要',
-          explanation: '数据质量比数量更重要，不准确的数据会导致错误的结论。'
-        },
-        {
-          id: '7-1-4',
-          question: '数据分析的局限性不包括？',
-          type: 'multiple-choice',
-          options: ['数据质量问题', '相关性 vs 因果性', '过度拟合', '实时处理能力'],
-          answer: '实时处理能力',
-          explanation: '实时处理能力是数据分析的未来趋势，不是局限性。'
-        },
-        {
-          id: '7-1-5',
-          question: '数据分析的核心思维不包括？',
-          type: 'multiple-choice',
-          options: ['问题导向', '逻辑推理', '可视化表达', '算法偏见'],
-          answer: '算法偏见',
-          explanation: '算法偏见是数据分析的伦理问题，不是核心思维。'
-        },
-        {
-          id: '7-1-6',
-          question: '简述数据分析的完整流程。',
-          type: 'short-answer',
-          answer: '1. 问题定义 2. 数据收集 3. 数据清洗 4. 探索分析 5. 建模分析 6. 结果呈现 7. 行动建议',
-          explanation: '这是数据分析的标准流程，每个步骤都不可或缺。'
-        }
-      ],
-      quiz: [
-        {
-          id: '7-1-q1',
-          question: '数据分析的核心是解决业务问题。',
-          type: 'true-false',
-          options: ['正确', '错误'],
-          correctAnswer: 0,
-          explanation: '是的，数据分析的核心是解决业务问题，工具只是手段。'
-        },
-        {
-          id: '7-1-q2',
-          question: '相关性等于因果性。',
-          type: 'true-false',
-          options: ['正确', '错误'],
-          correctAnswer: 1,
-          explanation: '错误，相关性不等于因果性，需要实验验证。'
-        }
-      ]
-    },
-    {
-      id: '7-2',
-      title: '项目1：数据基础与环境搭建',
-      content: `# 项目1：数据基础与环境搭建
-
-## 项目目标
-- 了解Python数据分析的基本环境
-- 掌握Pyodide在浏览器中运行Python的方法
-- 熟悉基本的数据结构和操作
-
-## 任务清单
-1. 初始化Pyodide环境
-2. 安装和导入必要的库
-3. 创建和操作基本数据结构
-4. 进行简单的数据计算
-
-## 数据集
-本项目使用随机生成的数据集，包含学生的基本信息和成绩。
-
-## 代码示例
-
-python
-# 导入必要的库
-import pandas as pd
-import numpy as np
-
-# 生成随机数据集
-np.random.seed(42)
-
-# 创建学生数据
-data = {
-    '姓名': [f'学生{i}' for i in range(1, 11)],
-    '年龄': np.random.randint(18, 25, 10),
-    '数学': np.random.randint(60, 100, 10),
-    '英语': np.random.randint(60, 100, 10),
-    '语文': np.random.randint(60, 100, 10)
+export interface Course {
+  id: string;
+  title: string;
+  description: string;
+  modules: Module[];
 }
 
-# 创建DataFrame
-df = pd.DataFrame(data)
-
-# 计算平均分
-df['平均分'] = df[['数学', '英语', '语文']].mean(axis=1)
-
-# 显示数据
-print(df)
-
-# 分析最高分
-print('\n各科目最高分:')
-print(df[['数学', '英语', '语文']].max())
-
-
-## 预期输出
-- 显示包含学生信息和成绩的DataFrame
-- 显示各科目最高分
-- 计算并显示平均分`,
-      exercises: [
-        {
-          id: '7-2-1',
-          question: 'Pyodide是什么？',
-          type: 'multiple-choice',
-          options: ['Python的一个库', '在浏览器中运行Python的工具', '数据分析框架', '机器学习库'],
-          answer: '在浏览器中运行Python的工具',
-          explanation: 'Pyodide是一个在浏览器中运行Python的工具。'
-        },
-        {
-          id: '7-2-2',
-          question: '创建DataFrame使用的函数是？',
-          type: 'multiple-choice',
-          options: ['pd.DataFrame()', 'pd.create()', 'pd.make()', 'pd.build()'],
-          answer: 'pd.DataFrame()',
-          explanation: '使用pd.DataFrame()函数创建DataFrame。'
-        },
-        {
-          id: '7-2-3',
-          question: '计算平均分使用的函数是？',
-          type: 'multiple-choice',
-          options: ['sum()', 'mean()', 'average()', 'avg()'],
-          answer: 'mean()',
-          explanation: '使用mean()函数计算平均值。'
-        },
-        {
-          id: '7-2-4',
-          question: '生成随机数使用的库是？',
-          type: 'multiple-choice',
-          options: ['pandas', 'numpy', 'matplotlib', 'seaborn'],
-          answer: 'numpy',
-          explanation: '使用numpy库生成随机数。'
-        },
-        {
-          id: '7-2-5',
-          question: 'axis=1表示什么？',
-          type: 'multiple-choice',
-          options: ['按行计算', '按列计算', '按对角线计算', '按整个数据计算'],
-          answer: '按行计算',
-          explanation: 'axis=1表示按行计算，axis=0表示按列计算。'
-        },
-        {
-          id: '7-2-6',
-          question: '编写代码生成一个包含5个学生信息的DataFrame，包括姓名、年龄、数学成绩，并计算平均分。',
-          type: 'short-answer',
-          answer: 'import pandas as pd\nimport numpy as np\n\ndata = {\n    \'姓名\': [\'学生1\', \'学生2\', \'学生3\', \'学生4\', \'学生5\'],\n    \'年龄\': [18, 19, 20, 19, 18],\n    \'数学\': [85, 92, 78, 90, 88]\n}\n\ndf = pd.DataFrame(data)\ndf[\'平均分\'] = df[\'数学\']\nprint(df)',
-          explanation: '创建包含学生信息的字典，转换为DataFrame，并计算平均分。'
-        }
-      ],
-      quiz: [
-        {
-          id: '7-2-q1',
-          question: 'Pyodide可以在浏览器中运行Python代码。',
-          type: 'true-false',
-          options: ['正确', '错误'],
-          correctAnswer: 0,
-          explanation: '是的，Pyodide可以在浏览器中运行Python代码。'
-        },
-        {
-          id: '7-2-q2',
-          question: 'pandas是Python中用于数据分析的核心库。',
-          type: 'true-false',
-          options: ['正确', '错误'],
-          correctAnswer: 0,
-          explanation: '是的，pandas是Python中用于数据分析的核心库。'
-        }
-      ]
-    },
-    {
-      id: '7-3',
-      title: '项目2：数据清洗与预处理',
-      content: `# 项目2：数据清洗与预处理
-
-## 项目目标
-- 掌握数据清洗的基本方法
-- 学习处理缺失值和异常值
-- 了解数据转换和标准化
-
-## 任务清单
-1. 导入和查看数据集
-2. 识别和处理缺失值
-3. 检测和处理异常值
-4. 数据转换和标准化
-
-## 数据集
-本项目使用包含缺失值和异常值的销售数据集。
-
-## 代码示例
-
-python
-import pandas as pd
-import numpy as np
-
-# 生成包含缺失值和异常值的数据集
-np.random.seed(42)
-
-data = {
-    '日期': pd.date_range('2023-01-01', periods=20),
-    '销售额': np.random.normal(1000, 200, 20),
-    '销售量': np.random.randint(50, 150, 20),
-    '地区': np.random.choice(['北京', '上海', '广州', '深圳'], 20)
+export interface Module {
+  id: string;
+  name: string;
+  lessons: Lesson[];
 }
 
-# 创建DataFrame
-df = pd.DataFrame(data)
-
-# 人为添加缺失值
-df.loc[2, '销售额'] = np.nan
-df.loc[5, '销售量'] = np.nan
-df.loc[8, '地区'] = np.nan
-
-# 人为添加异常值
-df.loc[12, '销售额'] = 5000  # 异常高值
-df.loc[15, '销售量'] = -10  # 异常负值
-
-print('原始数据:')
-print(df)
-
-# 处理缺失值
-print('\n处理缺失值:')
-df_clean = df.copy()
-df_clean['销售额'] = df_clean['销售额'].fillna(df_clean['销售额'].mean())
-df_clean['销售量'] = df_clean['销售量'].fillna(df_clean['销售量'].median())
-df_clean['地区'] = df_clean['地区'].fillna('未知')
-
-# 处理异常值
-print('\n处理异常值:')
-# 销售额异常值处理（超过3倍标准差）
-std_sales = df_clean['销售额'].std()
-mean_sales = df_clean['销售额'].mean()
-outlier_threshold = 3 * std_sales
-df_clean['销售额'] = np.where(
-    (df_clean['销售额'] > mean_sales + outlier_threshold) | (df_clean['销售额'] < mean_sales - outlier_threshold),
-    mean_sales,
-    df_clean['销售额']
-)
-
-# 销售量异常值处理（负值）
-df_clean['销售量'] = np.where(df_clean['销售量'] < 0, 0, df_clean['销售量'])
-
-print('\n清洗后数据:')
-print(df_clean)
-
-# 数据转换：计算单价
-df_clean['单价'] = df_clean['销售额'] / df_clean['销售量']
-
-print('\n添加单价后的数据:')
-print(df_clean)
-
-
-## 预期输出
-- 显示原始数据（包含缺失值和异常值）
-- 显示处理缺失值后的数据
-- 显示处理异常值后的数据
-- 显示添加单价后的数据`,
-      exercises: [
-        {
-          id: '7-3-1',
-          question: '处理缺失值的方法不包括？',
-          type: 'multiple-choice',
-          options: ['删除包含缺失值的行', '用均值填充', '用中位数填充', '用最大值填充'],
-          answer: '用最大值填充',
-          explanation: '用最大值填充不是常见的缺失值处理方法。'
-        },
-        {
-          id: '7-3-2',
-          question: '检测异常值的方法是？',
-          type: 'multiple-choice',
-          options: ['3倍标准差', '均值', '中位数', '众数'],
-          answer: '3倍标准差',
-          explanation: '常用3倍标准差方法检测异常值。'
-        },
-        {
-          id: '7-3-3',
-          question: 'fillna()函数的作用是？',
-          type: 'multiple-choice',
-          options: ['删除缺失值', '填充缺失值', '检测缺失值', '替换异常值'],
-          answer: '填充缺失值',
-          explanation: 'fillna()函数用于填充缺失值。'
-        },
-        {
-          id: '7-3-4',
-          question: 'np.where()函数的作用是？',
-          type: 'multiple-choice',
-          options: ['条件判断', '循环', '排序', '分组'],
-          answer: '条件判断',
-          explanation: 'np.where()函数用于条件判断和替换。'
-        },
-        {
-          id: '7-3-5',
-          question: '数据清洗的步骤不包括？',
-          type: 'multiple-choice',
-          options: ['处理缺失值', '处理异常值', '数据转换', '模型训练'],
-          answer: '模型训练',
-          explanation: '模型训练是数据清洗之后的步骤。'
-        },
-        {
-          id: '7-3-6',
-          question: '编写代码处理以下数据中的缺失值和异常值：\n\ndata = {\n    \'名称\': [\'A\', \'B\', \'C\', \'D\', \'E\'],\n    \'数值\': [10, np.nan, 15, 100, 20]\n}',
-          type: 'short-answer',
-          answer: 'import pandas as pd\nimport numpy as np\n\ndata = {\n    \'名称\': [\'A\', \'B\', \'C\', \'D\', \'E\'],\n    \'数值\': [10, np.nan, 15, 100, 20]\n}\n\ndf = pd.DataFrame(data)\n\n# 处理缺失值\ndf[\'数值\'] = df[\'数值\'].fillna(df[\'数值\'].mean())\n\n# 处理异常值\nmean_val = df[\'数值\'].mean()\nstd_val = df[\'数值\'].std()\ndf[\'数值\'] = np.where(df[\'数值\'] > mean_val + 3*std_val, mean_val, df[\'数值\'])\n\nprint(df)',
-          explanation: '使用fillna()填充缺失值，使用3倍标准差方法处理异常值。'
-        }
-      ],
-      quiz: [
-        {
-          id: '7-3-q1',
-          question: '数据清洗是数据分析的重要步骤。',
-          type: 'true-false',
-          options: ['正确', '错误'],
-          correctAnswer: 0,
-          explanation: '是的，数据清洗是数据分析的重要步骤，直接影响分析结果的准确性。'
-        },
-        {
-          id: '7-3-q2',
-          question: '处理缺失值时，应该直接删除包含缺失值的行。',
-          type: 'true-false',
-          options: ['正确', '错误'],
-          correctAnswer: 1,
-          explanation: '错误，直接删除可能会导致数据丢失，应该根据情况选择合适的填充方法。'
-        }
-      ]
-    }
-  ]
-};
+export interface Lesson {
+  id: string;
+  title: string;
+  content: string;
+  codeExample: string;
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
+}
 
 export const courses: Course[] = [
   {
-    id: '1',
-    title: 'Python 数据分析基础',
-    description: '学习 Python 编程基础，掌握数据分析必备的编程技能',
-    category: '编程基础',
-    difficulty: 'beginner',
-    duration: '20小时',
-    image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=python%20data%20analysis%20course%20cover&image_size=square_hd',
-    lessons: [
+    id: 'python-basics',
+    title: 'Python基础',
+    description: 'Python编程语言的基础知识，包括语法、数据类型、控制流等',
+    modules: [
       {
-        id: '1-1',
-        title: 'Python 入门',
-        content: 'Python 是一种高级编程语言，具有简洁易读的语法。它在数据分析、人工智能、Web开发等领域广泛应用。\n\n## 基础语法\n\n### 变量和数据类型\n```python\n# 整数\nage = 25\n\n# 浮点数\nprice = 19.99\n\n# 字符串\nname = "张三"\n\n# 布尔值\nis_student = True\n```\n\n### 列表和字典\n```python\n# 列表\nnumbers = [1, 2, 3, 4, 5]\n\n# 字典\nstudent = {\n    "name": "李四",\n    "age": 20,\n    "major": "商务数据分析"\n}\n```',
-        exercises: [
+        id: 'module-1',
+        name: 'Python入门',
+        lessons: [
           {
-            id: '1-1-1',
-            question: 'Python 中用于定义列表的符号是？',
-            type: 'multiple-choice',
-            options: ['()', '[]', '{}', '<>'],
-            answer: '[]',
-            explanation: 'Python 中使用方括号 [] 来定义列表。'
+            id: 'lesson-1',
+            title: 'Python简介',
+            content: 'Python是一种高级编程语言，以其简洁的语法和强大的功能而闻名。它被广泛应用于数据分析、人工智能、Web开发等领域。',
+            codeExample: 'print("Hello, Python!")',
+            difficulty: 'beginner'
           },
           {
-            id: '1-1-2',
-            question: 'Python 中正确的变量名是？',
-            type: 'multiple-choice',
-            options: ['123abc', 'my-var', 'my_var', 'class'],
-            answer: 'my_var',
-            explanation: 'Python 变量名不能以数字开头，不能包含连字符，也不能使用关键字。'
-          },
-          {
-            id: '1-1-3',
-            question: 'Python 中用于定义字典的符号是？',
-            type: 'multiple-choice',
-            options: ['()', '[]', '{}', '<>'],
-            answer: '{}',
-            explanation: 'Python 中使用花括号 {} 来定义字典。'
-          },
-          {
-            id: '1-1-4',
-            question: '以下哪个是 Python 中的布尔值？',
-            type: 'multiple-choice',
-            options: ['"True"', 'true', 'True', '1'],
-            answer: 'True',
-            explanation: 'Python 中的布尔值首字母大写：True 和 False。'
-          },
-          {
-            id: '1-1-5',
-            question: 'Python 中字符串可以使用什么符号表示？',
-            type: 'multiple-choice',
-            options: ['单引号', '双引号', '三引号', '以上都可以'],
-            answer: '以上都可以',
-            explanation: 'Python 中可以使用单引号、双引号或三引号来表示字符串。'
-          },
-          {
-            id: '1-1-6',
-            question: '编写一个 Python 程序，创建一个包含 5 个数字的列表，然后计算它们的和。',
-            type: 'short-answer',
-            answer: 'numbers = [1, 2, 3, 4, 5]\nprint(sum(numbers))',
-            explanation: '可以使用 sum() 函数快速计算列表中所有元素的和。'
-          }
-        ],
-        quiz: [
-          {
-            id: '1-1-q1',
-            question: 'Python 是一种编译型语言。',
-            type: 'true-false',
-            options: ['正确', '错误'],
-            correctAnswer: 1,
-            explanation: 'Python 是一种解释型语言，不是编译型语言。'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: '2',
-    title: 'Excel 数据处理与分析',
-    description: '掌握 Excel 高级功能，提高数据处理效率',
-    category: '工具使用',
-    difficulty: 'beginner',
-    duration: '15小时',
-    image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=excel%20data%20analysis%20course%20cover&image_size=square_hd',
-    lessons: [
-      {
-        id: '2-1',
-        title: 'Excel 公式与函数',
-        content: 'Excel 提供了丰富的函数来处理数据。常用函数包括：\n\n## 常用函数\n\n### 数学函数\n- SUM(): 求和\n- AVERAGE(): 平均值\n- MAX(): 最大值\n- MIN(): 最小值\n\n### 逻辑函数\n- IF(): 条件判断\n- AND(): 且\n- OR(): 或\n\n### 查找函数\n- VLOOKUP(): 垂直查找\n- INDEX(): 索引\n- MATCH(): 匹配',
-        exercises: [
-          {
-            id: '2-1-1',
-            question: '计算 A1 到 A10 单元格的平均值，应该使用哪个函数？',
-            type: 'multiple-choice',
-            options: ['SUM(A1:A10)', 'AVERAGE(A1:A10)', 'MEAN(A1:A10)', 'AVG(A1:A10)'],
-            answer: 'AVERAGE(A1:A10)',
-            explanation: 'AVERAGE() 函数用于计算平均值。'
-          },
-          {
-            id: '2-1-2',
-            question: 'Excel 中用于垂直查找的函数是？',
-            type: 'multiple-choice',
-            options: ['HLOOKUP', 'VLOOKUP', 'INDEX', 'MATCH'],
-            answer: 'VLOOKUP',
-            explanation: 'VLOOKUP 函数用于垂直查找数据。'
-          },
-          {
-            id: '2-1-3',
-            question: 'Excel 中用于条件判断的函数是？',
-            type: 'multiple-choice',
-            options: ['CASE', 'IF', 'SWITCH', 'CHOOSE'],
-            answer: 'IF',
-            explanation: 'IF 函数用于条件判断。'
-          },
-          {
-            id: '2-1-4',
-            question: '计算 A1 到 A10 单元格的最大值，应该使用哪个函数？',
-            type: 'multiple-choice',
-            options: ['MAX(A1:A10)', 'MIN(A1:A10)', 'LARGE(A1:A10,1)', 'TOP(A1:A10,1)'],
-            answer: 'MAX(A1:A10)',
-            explanation: 'MAX() 函数用于计算最大值。'
-          },
-          {
-            id: '2-1-5',
-            question: 'Excel 中用于求和的函数是？',
-            type: 'multiple-choice',
-            options: ['ADD', 'TOTAL', 'SUM', 'PLUS'],
-            answer: 'SUM',
-            explanation: 'SUM() 函数用于求和。'
-          },
-          {
-            id: '2-1-6',
-            question: '在 Excel 中，使用 IF 函数判断 A1 单元格的值是否大于 100，如果是则显示"合格"，否则显示"不合格"。',
-            type: 'short-answer',
-            answer: '=IF(A1>100,"合格","不合格")',
-            explanation: 'IF 函数的语法是 IF(条件, 条件为真时的值, 条件为假时的值)。'
-          }
-        ],
-        quiz: [
-          {
-            id: '2-1-q1',
-            question: 'VLOOKUP 函数可以从左向右查找数据。',
-            type: 'true-false',
-            options: ['正确', '错误'],
-            correctAnswer: 0,
-            explanation: 'VLOOKUP 函数确实是从左向右查找数据。'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: '3',
-    title: '数据可视化实战',
-    description: '学习使用 Matplotlib 和 Seaborn 创建专业的数据图表',
-    category: '可视化',
-    difficulty: 'intermediate',
-    duration: '25小时',
-    image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=data%20visualization%20charts%20course%20cover&image_size=square_hd',
-    lessons: [
-      {
-        id: '3-1',
-        title: 'Matplotlib 基础',
-        content: 'Matplotlib 是 Python 中最常用的数据可视化库。\n\n## 基础绘图\n\n```python\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n# 创建数据\nx = np.linspace(0, 10, 100)\ny = np.sin(x)\n\n# 绘制折线图\nplt.figure(figsize=(10, 6))\nplt.plot(x, y)\nplt.title(\'正弦曲线\')\nplt.xlabel(\'x\')\nplt.ylabel(\'sin(x)\')\nplt.grid(True)\nplt.show()\n```',
-        exercises: [
-          {
-            id: '3-1-1',
-            question: 'Matplotlib 中用于显示图表的函数是？',
-            type: 'multiple-choice',
-            options: ['plt.display()', 'plt.show()', 'plt.plot()', 'plt.draw()'],
-            answer: 'plt.show()',
-            explanation: 'plt.show() 函数用于显示图表。'
-          },
-          {
-            id: '3-1-2',
-            question: 'Matplotlib 中用于创建图形对象的函数是？',
-            type: 'multiple-choice',
-            options: ['plt.figure()', 'plt.create()', 'plt.graph()', 'plt.image()'],
-            answer: 'plt.figure()',
-            explanation: 'plt.figure() 函数用于创建图形对象。'
-          },
-          {
-            id: '3-1-3',
-            question: 'Matplotlib 中用于绘制折线图的函数是？',
-            type: 'multiple-choice',
-            options: ['plt.line()', 'plt.plot()', 'plt.lineplot()', 'plt.draw()'],
-            answer: 'plt.plot()',
-            explanation: 'plt.plot() 函数用于绘制折线图。'
-          },
-          {
-            id: '3-1-4',
-            question: 'Matplotlib 中用于添加标题的函数是？',
-            type: 'multiple-choice',
-            options: ['plt.header()', 'plt.title()', 'plt.label()', 'plt.name()'],
-            answer: 'plt.title()',
-            explanation: 'plt.title() 函数用于添加标题。'
-          },
-          {
-            id: '3-1-5',
-            question: 'Matplotlib 中用于添加 x 轴标签的函数是？',
-            type: 'multiple-choice',
-            options: ['plt.xlabel()', 'plt.xaxis()', 'plt.labelx()', 'plt.axisx()'],
-            answer: 'plt.xlabel()',
-            explanation: 'plt.xlabel() 函数用于添加 x 轴标签。'
-          },
-          {
-            id: '3-1-6',
-            question: '使用 Matplotlib 绘制一个包含 50 个点的散点图，x 轴为 1 到 50，y 轴为随机数。',
-            type: 'short-answer',
-            answer: 'import matplotlib.pyplot as plt\nimport numpy as np\nx = np.arange(1, 51)\ny = np.random.rand(50)\nplt.scatter(x, y)\nplt.show()',
-            explanation: '使用 plt.scatter() 函数可以绘制散点图。'
-          }
-        ],
-        quiz: [
-          {
-            id: '3-1-q1',
-            question: 'Seaborn 是基于 Matplotlib 的高级可视化库。',
-            type: 'true-false',
-            options: ['正确', '错误'],
-            correctAnswer: 0,
-            explanation: 'Seaborn 确实是基于 Matplotlib 构建的高级可视化库。'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: '4',
-    title: '统计分析与假设检验',
-    description: '学习统计学基础，掌握假设检验方法',
-    category: '统计学',
-    difficulty: 'intermediate',
-    duration: '30小时',
-    image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=statistics%20analysis%20course%20cover&image_size=square_hd',
-    lessons: [
-      {
-        id: '4-1',
-        title: '描述性统计',
-        content: '描述性统计用于总结和描述数据的基本特征。\n\n## 集中趋势\n- 均值（Mean）\n- 中位数（Median）\n- 众数（Mode）\n\n## 离散程度\n- 方差（Variance）\n- 标准差（Standard Deviation）\n- 四分位数（Quartiles）',
-        exercises: [
-          {
-            id: '4-1-1',
-            question: '不受极端值影响的集中趋势度量是？',
-            type: 'multiple-choice',
-            options: ['均值', '中位数', '众数', '方差'],
-            answer: '中位数',
-            explanation: '中位数不受极端值的影响，是稳健的集中趋势度量。'
-          },
-          {
-            id: '4-1-2',
-            question: '方差是标准差的什么？',
-            type: 'multiple-choice',
-            options: ['平方根', '平方', '倒数', '两倍'],
-            answer: '平方',
-            explanation: '标准差是方差的平方根，方差是标准差的平方。'
-          },
-          {
-            id: '4-1-3',
-            question: '集中趋势的度量不包括？',
-            type: 'multiple-choice',
-            options: ['均值', '中位数', '众数', '标准差'],
-            answer: '标准差',
-            explanation: '标准差是离散程度的度量，不是集中趋势的度量。'
-          },
-          {
-            id: '4-1-4',
-            question: '在数据分布偏斜时，哪个指标更适合描述集中趋势？',
-            type: 'multiple-choice',
-            options: ['均值', '中位数', '众数', '标准差'],
-            answer: '中位数',
-            explanation: '在数据分布偏斜时，中位数比均值更适合描述集中趋势。'
-          },
-          {
-            id: '4-1-5',
-            question: '四分位数将数据分成了几个部分？',
-            type: 'multiple-choice',
-            options: ['2个', '3个', '4个', '5个'],
-            answer: '4个',
-            explanation: '四分位数将数据分成了4个相等的部分。'
-          },
-          {
-            id: '4-1-6',
-            question: '给定数据：1, 2, 3, 4, 5, 6, 7, 8, 9, 10，请计算均值和中位数。',
-            type: 'short-answer',
-            answer: '均值 = 5.5，中位数 = 5.5',
-            explanation: '对于对称分布的数据，均值和中位数通常相等。'
-          }
-        ],
-        quiz: [
-          {
-            id: '4-1-q1',
-            question: '标准差是方差的平方根。',
-            type: 'true-false',
-            options: ['正确', '错误'],
-            correctAnswer: 0,
-            explanation: '标准差确实是方差的平方根。'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: '5',
-    title: '机器学习入门',
-    description: '了解机器学习基本概念，掌握常用算法',
-    category: '机器学习',
-    difficulty: 'advanced',
-    duration: '40小时',
-    image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=machine%20learning%20course%20cover&image_size=square_hd',
-    lessons: [
-      {
-        id: '5-1',
-        title: '机器学习概述',
-        content: '机器学习是人工智能的一个分支，使计算机能够从数据中学习。\n\n## 主要类型\n\n### 监督学习\n- 分类（Classification）\n- 回归（Regression）\n\n### 无监督学习\n- 聚类（Clustering）\n- 降维（Dimensionality Reduction）\n\n### 强化学习\n- 智能体与环境交互\n- 通过奖励学习',
-        exercises: [
-          {
-            id: '5-1-1',
-            question: '预测房价属于什么类型的机器学习问题？',
-            type: 'multiple-choice',
-            options: ['分类', '回归', '聚类', '降维'],
-            answer: '回归',
-            explanation: '房价预测是回归问题，因为预测的是连续值。'
-          },
-          {
-            id: '5-1-2',
-            question: '将电子邮件分类为垃圾邮件或正常邮件属于什么类型的机器学习问题？',
-            type: 'multiple-choice',
-            options: ['分类', '回归', '聚类', '降维'],
-            answer: '分类',
-            explanation: '垃圾邮件分类是分类问题，因为预测的是离散类别。'
-          },
-          {
-            id: '5-1-3',
-            question: '监督学习需要什么类型的数据？',
-            type: 'multiple-choice',
-            options: ['无标签数据', '有标签数据', '文本数据', '图像数据'],
-            answer: '有标签数据',
-            explanation: '监督学习需要带有标签的训练数据。'
-          },
-          {
-            id: '5-1-4',
-            question: '无监督学习的主要目标是什么？',
-            type: 'multiple-choice',
-            options: ['预测标签', '发现数据中的模式', '最大化奖励', '最小化误差'],
-            answer: '发现数据中的模式',
-            explanation: '无监督学习的主要目标是发现数据中的模式和结构。'
-          },
-          {
-            id: '5-1-5',
-            question: '强化学习通过什么来学习？',
-            type: 'multiple-choice',
-            options: ['标签', '奖励', '模式', '误差'],
-            answer: '奖励',
-            explanation: '强化学习通过奖励信号来学习最佳策略。'
-          },
-          {
-            id: '5-1-6',
-            question: '简述监督学习、无监督学习和强化学习的主要区别。',
-            type: 'short-answer',
-            answer: '监督学习使用有标签数据进行训练，无监督学习发现无标签数据中的模式，强化学习通过与环境交互和奖励信号来学习。',
-            explanation: '这三种学习类型在数据需求和学习方式上有本质区别。'
-          }
-        ],
-        quiz: [
-          {
-            id: '5-1-q1',
-            question: '监督学习需要标注数据。',
-            type: 'true-false',
-            options: ['正确', '错误'],
-            correctAnswer: 0,
-            explanation: '监督学习确实需要带有标签的训练数据。'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: '6',
-    title: '数据分析技术平台',
-    description: '一个完整的数据分析技术学习平台，包含数据处理、可视化、大数据分析等核心技术',
-    category: '技术栈',
-    difficulty: 'intermediate',
-    duration: '50小时',
-    image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=data%20analysis%20platform%20dashboard%20modern%20interface&image_size=square_hd',
-    lessons: [
-      {
-        id: '6-1',
-        title: '平台介绍与技术栈概述',
-        content: `欢迎来到数据分析技术平台！本平台旨在帮助您掌握现代数据分析的核心技术。
+            id: 'lesson-2',
+            title: '变量与数据类型',
+            content: 'Python支持多种数据类型，包括整数、浮点数、字符串、布尔值等。变量用于存储这些数据。',
+            codeExample: `# 变量定义
+name = "Python"
+age = 30
+price = 19.99
+is_active = True
 
-## 平台特色
+print(name, age, price, is_active)`,
+            difficulty: 'beginner'
+          },
+          {
+            id: 'lesson-3',
+            title: '控制流',
+            content: '控制流语句包括条件语句（if-elif-else）和循环语句（for、while），用于控制程序的执行流程。',
+            codeExample: `# 条件语句
+age = 18
+if age >= 18:
+    print("成年人")
+else:
+    print("未成年人")
 
-### 交互式学习
-- 实时代码编辑器：内置 Jupyter 风格的代码编辑器，支持实时执行和结果展示
-- 数据可视化实验室：提供多种可视化工具，让数据故事更加生动
-- 真实数据集练习：使用真实的商业数据集进行实战演练
-- 个性化学习路径：根据学习者的基础和目标定制学习计划
-
-### 技术栈覆盖
-- Python 数据科学生态：Pandas、NumPy、Matplotlib、Scikit-learn 等
-- SQL 数据库技术：基础查询、复杂连接、窗口函数等
-- 数据可视化工具：Matplotlib、Seaborn、Tableau、Power BI
-- 大数据处理框架：Hadoop、Spark、Flink
-- 商业智能平台：数据仓库、OLAP、BI 仪表板
-
-## 整体能力结构
-1. 数据获取与导入：从各种数据源获取数据
-2. 数据清洗与预处理：处理缺失值、重复值、异常值
-3. 数据计算与统计分析：描述性统计、推断统计
-4. 数据可视化：创建各种图表和仪表板
-5. 业务分析与报告输出：撰写专业的数据分析报告
-
-## 学习路径
-- 基础阶段：Python 基础、Excel 基础、SQL 基础
-- 进阶阶段：数据处理、数据可视化、统计分析
-- 高级阶段：机器学习、大数据处理、商业分析实战`,
-        exercises: [
-          {
-            id: '6-1-1',
-            question: '数据分析技术平台的主要特色是什么？',
-            type: 'multiple-choice',
-            options: ['理论学习', '交互式实践', '被动观看', '考试认证'],
-            answer: '交互式实践',
-            explanation: '平台的主要特色是提供交互式实践环境，让用户能够实时操作和学习。'
-          },
-          {
-            id: '6-1-2',
-            question: '以下哪个不属于数据分析的整体能力结构？',
-            type: 'multiple-choice',
-            options: ['数据获取与导入', '数据清洗与预处理', '网页设计', '业务分析与报告输出'],
-            answer: '网页设计',
-            explanation: '网页设计不属于数据分析的核心能力结构。'
-          },
-          {
-            id: '6-1-3',
-            question: '数据分析技术平台不覆盖以下哪个技术栈？',
-            type: 'multiple-choice',
-            options: ['Python 数据科学生态', 'SQL 数据库技术', '游戏开发', '商业智能平台'],
-            answer: '游戏开发',
-            explanation: '游戏开发不是本平台覆盖的技术栈。'
-          },
-          {
-            id: '6-1-4',
-            question: '数据分析学习路径的进阶阶段不包括？',
-            type: 'multiple-choice',
-            options: ['数据处理', '数据可视化', 'Python 基础', '统计分析'],
-            answer: 'Python 基础',
-            explanation: 'Python 基础属于基础阶段，不是进阶阶段。'
-          },
-          {
-            id: '6-1-5',
-            question: '以下哪个不是数据可视化工具？',
-            type: 'multiple-choice',
-            options: ['Matplotlib', 'Seaborn', 'Word', 'Tableau'],
-            answer: 'Word',
-            explanation: 'Word 是文字处理软件，不是数据可视化工具。'
-          },
-          {
-            id: '6-1-6',
-            question: '简述数据分析的 5 个核心能力结构。',
-            type: 'short-answer',
-            answer: '1. 数据获取与导入 2. 数据清洗与预处理 3. 数据计算与统计分析 4. 数据可视化 5. 业务分析与报告输出',
-            explanation: '这 5 个能力构成了数据分析的完整流程。'
-          }
-        ],
-        quiz: [
-          {
-            id: '6-1-q1',
-            question: '本平台涵盖了完整的数据分析技术栈。',
-            type: 'true-false',
-            options: ['正确', '错误'],
-            correctAnswer: 0,
-            explanation: '是的，本平台涵盖了从数据处理、可视化到大数据分析的完整技术栈。'
+# 循环语句
+for i in range(5):
+    print(i)`,
+            difficulty: 'beginner'
           }
         ]
       },
       {
-        id: '6-2',
-        title: 'Excel 模块',
-        content: `Excel 是商务数据分析中最常用的工具之一，掌握其高级功能可以大大提高工作效率。
-
-## 基础操作
-- 数据整理：排序、筛选、条件格式
-- 快捷键：常用快捷键提高操作速度
-- 单元格格式：数字格式、日期格式、条件格式
-- 数据验证：设置数据输入规则和提示
-
-## 常用函数
-- 查找匹配：VLOOKUP、HLOOKUP、INDEX+MATCH
-- 多条件统计：SUMIFS、COUNTIFS、AVERAGEIFS
-- 文本处理：LEFT、RIGHT、MID、CONCATENATE
-- 日期处理：TODAY、NOW、DATEDIF、YEAR/MONTH/DAY
-- 逻辑函数：IF、AND、OR、NOT
-
-## 数据透视表
-- 创建数据透视表：快速汇总和分析数据
-- 多维度分析：行、列、值、筛选器
-- 计算字段：创建自定义计算
-- 数据透视图表：将分析结果可视化
-
-## Power Query 自动化数据清洗
-- 连接数据源：Excel、CSV、数据库等
-- 数据转换：筛选、排序、分组、合并
-- 数据清洗：处理缺失值、重复值、错误值
-- 自动化流程：创建查询并刷新数据
-
-## 图表制作与动态看板
-- 图表类型：柱形图、折线图、饼图、散点图等
-- 图表美化：标题、图例、数据标签、颜色方案
-- 动态看板：使用切片器、表单控件创建交互式仪表板
-- 数据故事：通过图表讲述数据背后的故事`,
-        exercises: [
+        id: 'module-2',
+        name: '函数与模块',
+        lessons: [
           {
-            id: '6-2-1',
-            question: 'Excel 中用于垂直查找的函数是？',
-            type: 'multiple-choice',
-            options: ['HLOOKUP', 'VLOOKUP', 'INDEX', 'MATCH'],
-            answer: 'VLOOKUP',
-            explanation: 'VLOOKUP 函数用于垂直查找数据。'
+            id: 'lesson-4',
+            title: '函数定义与调用',
+            content: '函数是一段可重用的代码块，用于执行特定的任务。通过def关键字定义函数。',
+            codeExample: `def greet(name):
+    return f"Hello, {name}!"
+
+print(greet("Python"))`,
+            difficulty: 'beginner'
           },
           {
-            id: '6-2-2',
-            question: 'Excel 中用于多条件统计求和的函数是？',
-            type: 'multiple-choice',
-            options: ['SUMIF', 'SUMIFS', 'COUNTIF', 'COUNTIFS'],
-            answer: 'SUMIFS',
-            explanation: 'SUMIFS 函数用于多条件统计求和。'
-          },
-          {
-            id: '6-2-3',
-            question: 'Excel 中用于自动化数据清洗的工具是？',
-            type: 'multiple-choice',
-            options: ['数据透视表', 'Power Query', 'VLOOKUP', '条件格式'],
-            answer: 'Power Query',
-            explanation: 'Power Query 用于自动化数据清洗和转换。'
-          },
-          {
-            id: '6-2-4',
-            question: 'Excel 数据透视表不能实现以下哪个功能？',
-            type: 'multiple-choice',
-            options: ['多维度汇总', '创建计算字段', '编写 Python 代码', '数据可视化'],
-            answer: '编写 Python 代码',
-            explanation: '数据透视表不能直接编写 Python 代码。'
-          },
-          {
-            id: '6-2-5',
-            question: 'Excel 中 LEFT 函数的作用是？',
-            type: 'multiple-choice',
-            options: ['从右边提取字符', '从左边提取字符', '从中间提取字符', '合并字符串'],
-            answer: '从左边提取字符',
-            explanation: 'LEFT 函数用于从字符串左边提取指定数量的字符。'
-          },
-          {
-            id: '6-2-6',
-            question: '使用 Excel 创建一个数据透视表，按月份汇总销售额。',
-            type: 'short-answer',
-            answer: '1. 选择数据区域 2. 点击插入 → 数据透视表 3. 将日期拖到行区域 4. 将销售额拖到值区域 5. 按月份分组',
-            explanation: '数据透视表是 Excel 中快速汇总和分析数据的强大工具。'
-          }
-        ],
-        quiz: [
-          {
-            id: '6-2-q1',
-            question: 'Power Query 可以自动化数据清洗流程。',
-            type: 'true-false',
-            options: ['正确', '错误'],
-            correctAnswer: 0,
-            explanation: '是的，Power Query 可以自动化数据清洗流程，提高工作效率。'
-          }
-        ]
-      },
-      {
-        id: '6-3',
-        title: 'SQL 模块',
-        content: `SQL（Structured Query Language）是处理关系型数据库的标准语言，是数据分析的重要工具。
+            id: 'lesson-5',
+            title: '模块导入',
+            content: '模块是一个包含Python定义和语句的文件。通过import语句导入模块。',
+            codeExample: `import math
 
-## 数据库基础
-- 表结构：字段、数据类型、约束
-- 关系模型：主键、外键、关联关系
-- SQL 语法：SELECT、FROM、WHERE、ORDER BY 等
-- 数据库类型：MySQL、PostgreSQL、SQL Server、Oracle
-
-## 基础查询
-- 数据检索：SELECT 语句
-- 条件筛选：WHERE 子句
-- 排序：ORDER BY 子句
-- 限制结果：LIMIT 子句
-
-## 分组聚合与多表连接
-- 分组：GROUP BY 子句
-- 聚合函数：SUM、AVG、MAX、MIN、COUNT
-- 多表连接：INNER JOIN、LEFT JOIN、RIGHT JOIN、FULL JOIN
-- 子查询：嵌套查询、相关子查询
-
-## 条件判断与空值处理
-- 条件判断：CASE 语句
-- 空值处理：IS NULL、IS NOT NULL、COALESCE
-- 字符串处理：CONCAT、SUBSTRING、UPPER、LOWER
-- 数值计算：数学函数、日期函数
-
-## 窗口函数与复杂查询
-- 窗口函数：ROW_NUMBER、RANK、DENSE_RANK、NTILE
-- 窗口框架：ROWS BETWEEN、RANGE BETWEEN
-- 复杂查询：联合查询、交叉查询、递归查询
-- 性能优化：索引、查询计划、执行效率
-
-## 业务数据提取实战
-- 销售数据提取：销售趋势、产品分析、客户分析
-- 用户行为数据：访问量、转化率、留存率
-- 财务数据：收入、成本、利润分析
-- 运营数据：KPI 监控、业务指标分析`,
-        exercises: [
-          {
-            id: '6-3-1',
-            question: 'SQL 中用于分组的关键字是？',
-            type: 'multiple-choice',
-            options: ['GROUP', 'BY', 'GROUP BY', 'AGGREGATE'],
-            answer: 'GROUP BY',
-            explanation: 'GROUP BY 子句用于对结果集进行分组。'
-          },
-          {
-            id: '6-3-2',
-            question: 'SQL 中用于内连接的关键字是？',
-            type: 'multiple-choice',
-            options: ['LEFT JOIN', 'RIGHT JOIN', 'INNER JOIN', 'FULL JOIN'],
-            answer: 'INNER JOIN',
-            explanation: 'INNER JOIN 用于内连接，只返回两个表中匹配的记录。'
-          },
-          {
-            id: '6-3-3',
-            question: 'SQL 中用于条件判断的语句是？',
-            type: 'multiple-choice',
-            options: ['IF', 'CASE', 'SWITCH', 'CONDITION'],
-            answer: 'CASE',
-            explanation: 'CASE 语句用于 SQL 中的条件判断。'
-          },
-          {
-            id: '6-3-4',
-            question: '以下哪个不是 SQL 中的聚合函数？',
-            type: 'multiple-choice',
-            options: ['SUM', 'AVG', 'MAX', 'UPPER'],
-            answer: 'UPPER',
-            explanation: 'UPPER 是字符串函数，不是聚合函数。'
-          },
-          {
-            id: '6-3-5',
-            question: 'SQL 中用于排序的关键字是？',
-            type: 'multiple-choice',
-            options: ['SORT', 'ORDER BY', 'ARRANGE', 'RANK'],
-            answer: 'ORDER BY',
-            explanation: 'ORDER BY 子句用于对结果集进行排序。'
-          },
-          {
-            id: '6-3-6',
-            question: '编写一个 SQL 查询，从 sales 表中按产品分组，计算每个产品的总销售额。',
-            type: 'short-answer',
-            answer: 'SELECT product, SUM(amount) as total_sales FROM sales GROUP BY product;',
-            explanation: '使用 GROUP BY 和 SUM() 函数可以按组计算聚合值。'
-          }
-        ],
-        quiz: [
-          {
-            id: '6-3-q1',
-            question: 'LEFT JOIN 会返回左表的所有记录，即使右表没有匹配的记录。',
-            type: 'true-false',
-            options: ['正确', '错误'],
-            correctAnswer: 0,
-            explanation: '是的，LEFT JOIN 会返回左表的所有记录，右表没有匹配的记录时会显示 NULL。'
-          }
-        ]
-      },
-      {
-        id: '6-4',
-        title: 'Python 数据分析模块（核心）',
-        content: `Python 是数据分析的强大工具，其丰富的库生态系统使其成为数据科学家的首选语言。
-
-## Python 基础语法
-- 变量和数据类型：整数、浮点数、字符串、布尔值
-- 控制流：条件语句、循环语句
-- 数据结构：列表、元组、字典、集合
-- 函数和模块：定义函数、导入模块
-
-## NumPy 数值计算
-- 数组创建：一维数组、二维数组
-- 数组操作：索引、切片、形状操作
-- 数学运算：基本运算、广播
-- 线性代数：矩阵运算、线性方程组
-
-## Pandas 数据处理
-- 数据读取与导出：CSV、Excel、SQL、JSON
-- 数据查看与探索：head、tail、info、describe
-- 缺失值、重复值、异常值处理：dropna、fillna、drop_duplicates
-- 条件筛选与索引：布尔索引、loc、iloc
-- 分组聚合与数据透视：groupby、agg、pivot_table
-- 多表合并与数据转换：merge、concat、apply、map
-
-## 数据可视化
-- Matplotlib 基础图表：折线图、柱状图、饼图、散点图
-- Seaborn 统计绘图：热力图、箱线图、小提琴图、配对图
-- 图表美化：标题、标签、图例、颜色、样式
-- 图表保存：保存为图片、PDF 等格式
-
-## 全流程实战项目
-- 数据获取：从各种数据源获取数据
-- 数据清洗：处理数据质量问题
-- 数据分析：应用统计方法和算法
-- 数据可视化：创建图表和仪表板
-- 报告生成：撰写分析报告和建议`,
-        exercises: [
-          {
-            id: '6-4-1',
-            question: 'Python 中用于数据处理的核心库是？',
-            type: 'multiple-choice',
-            options: ['Pandas', 'NumPy', 'Matplotlib', 'Scikit-learn'],
-            answer: 'Pandas',
-            explanation: 'Pandas 是 Python 中用于数据处理和分析的核心库。'
-          },
-          {
-            id: '6-4-2',
-            question: 'Pandas 中用于查看数据前几行的方法是？',
-            type: 'multiple-choice',
-            options: ['first()', 'head()', 'top()', 'begin()'],
-            answer: 'head()',
-            explanation: 'head() 方法用于查看 DataFrame 的前几行数据。'
-          },
-          {
-            id: '6-4-3',
-            question: 'NumPy 中用于创建数组的函数是？',
-            type: 'multiple-choice',
-            options: ['list()', 'array()', 'matrix()', 'table()'],
-            answer: 'array()',
-            explanation: 'np.array() 函数用于创建 NumPy 数组。'
-          },
-          {
-            id: '6-4-4',
-            question: 'Pandas 中用于处理缺失值的方法是？',
-            type: 'multiple-choice',
-            options: ['remove()', 'dropna()', 'delete()', 'clean()'],
-            answer: 'dropna()',
-            explanation: 'dropna() 方法用于删除包含缺失值的行或列。'
-          },
-          {
-            id: '6-4-5',
-            question: 'Matplotlib 中用于绘制柱状图的函数是？',
-            type: 'multiple-choice',
-            options: ['plt.bar()', 'plt.column()', 'plt.hist()', 'plt.box()'],
-            answer: 'plt.bar()',
-            explanation: 'plt.bar() 函数用于绘制柱状图。'
-          },
-          {
-            id: '6-4-6',
-            question: '使用 Pandas 读取一个 CSV 文件，然后显示前 5 行数据。',
-            type: 'short-answer',
-            answer: 'import pandas as pd\ndf = pd.read_csv("data.csv")\nprint(df.head())',
-            explanation: '使用 pd.read_csv() 读取 CSV 文件，head() 方法显示前几行。'
-          }
-        ],
-        quiz: [
-          {
-            id: '6-4-q1',
-            question: 'NumPy 数组比 Python 列表运算速度更快。',
-            type: 'true-false',
-            options: ['正确', '错误'],
-            correctAnswer: 0,
-            explanation: '是的，NumPy 数组使用 C 语言实现，运算速度比 Python 列表快得多。'
-          }
-        ]
-      },
-      {
-        id: '6-5',
-        title: '统计与业务分析',
-        content: `统计分析是数据分析的基础，掌握统计方法可以帮助我们从数据中提取有价值的信息。
-
-## 描述性统计
-- 集中趋势：均值、中位数、众数
-- 离散程度：方差、标准差、四分位数、极差
-- 分布特征：偏度、峰度、正态分布
-- 统计图表：直方图、箱线图、茎叶图
-
-## 对比、拆解、漏斗、归因分析
-- 对比分析：横向对比、纵向对比、环比、同比
-- 拆解分析：因素拆解、层次拆解、结构分析
-- 漏斗分析：用户转化漏斗、销售漏斗、业务流程漏斗
-- 归因分析：多触点归因、线性归因、时间衰减归因
-
-## 常用指标体系搭建
-- 业务指标：销售额、利润、市场份额
-- 用户指标：活跃用户、留存率、转化率
-- 运营指标：获客成本、客单价、复购率
-- 产品指标：功能使用率、用户满意度、NPS
-
-## 数据分析报告撰写
-- 报告结构：摘要、数据来源、分析方法、结果、建议
-- 数据可视化：选择合适的图表类型
-- 故事讲述：以数据为基础讲述业务故事
--  actionable 建议：基于分析结果提供可执行的建议
-
-## 商业场景应用
-- 市场分析：市场规模、竞争格局、趋势预测
-- 运营分析：活动效果、用户行为、渠道分析
-- 用户画像：用户特征、偏好、分群
-- 财务分析：财务状况、盈利能力、风险评估
-
-## AI 赋能分析
-- 利用 ChatGPT/Copilot 辅助生成代码
-- 自然语言处理：文本分析、情感分析
-- 机器学习：预测模型、分类模型、聚类分析
-- 自动化分析：使用 AI 工具自动生成分析报告`,
-        exercises: [
-          {
-            id: '6-5-1',
-            question: '不受极端值影响的集中趋势度量是？',
-            type: 'multiple-choice',
-            options: ['均值', '中位数', '众数', '方差'],
-            answer: '中位数',
-            explanation: '中位数不受极端值的影响，是稳健的集中趋势度量。'
-          },
-          {
-            id: '6-5-2',
-            question: '以下哪个不属于业务分析方法？',
-            type: 'multiple-choice',
-            options: ['对比分析', '漏斗分析', '代码分析', '归因分析'],
-            answer: '代码分析',
-            explanation: '代码分析不属于常用的业务分析方法。'
-          },
-          {
-            id: '6-5-3',
-            question: '用于理解用户转化过程中流失情况的分析方法是？',
-            type: 'multiple-choice',
-            options: ['对比分析', '漏斗分析', '拆解分析', '归因分析'],
-            answer: '漏斗分析',
-            explanation: '漏斗分析可以清晰地展示用户在各个阶段的转化情况和流失率。'
-          },
-          {
-            id: '6-5-4',
-            question: '以下哪个不是常用的用户指标？',
-            type: 'multiple-choice',
-            options: ['活跃用户', '留存率', '转化率', '代码行数'],
-            answer: '代码行数',
-            explanation: '代码行数不是用户指标，而是软件开发相关的指标。'
-          },
-          {
-            id: '6-5-5',
-            question: '数据分析报告的结构通常不包括？',
-            type: 'multiple-choice',
-            options: ['摘要', '数据来源', '代码仓库', '建议'],
-            answer: '代码仓库',
-            explanation: '代码仓库通常不是数据分析报告的标准结构部分。'
-          },
-          {
-            id: '6-5-6',
-            question: '简述漏斗分析在业务中的应用场景。',
-            type: 'short-answer',
-            answer: '漏斗分析常用于用户转化流程分析，如：电商购买流程、用户注册流程、营销活动转化等，帮助识别流失节点。',
-            explanation: '漏斗分析是业务分析中的重要方法，可以直观展示转化过程。'
-          }
-        ],
-        quiz: [
-          {
-            id: '6-5-q1',
-            question: '漏斗分析可以帮助我们理解用户转化过程中的流失情况。',
-            type: 'true-false',
-            options: ['正确', '错误'],
-            correctAnswer: 0,
-            explanation: '是的，漏斗分析可以清晰地展示用户在各个阶段的转化情况和流失率。'
+print(math.pi)
+print(math.sqrt(16))`,
+            difficulty: 'beginner'
           }
         ]
       }
     ]
   },
-  aiTrainingCourse
-];
+  {
+    id: 'numpy-basics',
+    title: 'NumPy基础',
+    description: 'NumPy库的基础知识，包括数组操作、数学函数、线性代数等',
+    modules: [
+      {
+        id: 'module-1',
+        name: 'NumPy入门',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: 'NumPy简介',
+            content: 'NumPy是Python中用于科学计算的核心库，提供了高效的多维数组对象和各种数学函数。',
+            codeExample: `import numpy as np
 
-export const achievements: Achievement[] = [
-  {
-    id: 'first-lesson',
-    title: '初学者',
-    description: '完成你的第一节课',
-    icon: '🎓',
-    type: 'completion',
-    requirement: 1,
-    points: 50
+# 创建数组
+arr = np.array([1, 2, 3, 4, 5])
+print(arr)
+print(type(arr))`,
+            difficulty: 'beginner'
+          },
+          {
+            id: 'lesson-2',
+            title: '数组操作',
+            content: 'NumPy数组支持各种操作，如索引、切片、形状操作等。',
+            codeExample: `import numpy as np
+
+# 创建二维数组
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+print("数组形状:", arr.shape)
+print("数组元素:", arr)
+print("第一行:", arr[0])
+print("第二列:", arr[:, 1])`,
+            difficulty: 'beginner'
+          }
+        ]
+      }
+    ]
   },
   {
-    id: 'course-complete',
-    title: '课程达人',
-    description: '完成一门完整的课程',
-    icon: '🏆',
-    type: 'completion',
-    requirement: 1,
-    points: 200
+    id: 'pandas-data-analysis',
+    title: 'Pandas数据分析',
+    description: '使用Pandas库进行数据分析和处理，包括数据读取、清洗、转换等',
+    modules: [
+      {
+        id: 'module-1',
+        name: 'Pandas基础',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: 'Pandas简介',
+            content: 'Pandas是Python中用于数据分析的重要库，提供了DataFrame和Series等数据结构，方便数据处理和分析。',
+            codeExample: `import pandas as pd
+import numpy as np
+
+# 创建Series
+s = pd.Series([1, 3, 5, np.nan, 6, 8])
+print(s)`,
+            difficulty: 'intermediate'
+          },
+          {
+            id: 'lesson-2',
+            title: 'DataFrame操作',
+            content: 'DataFrame是Pandas中最常用的数据结构，类似于表格，包含行和列。',
+            codeExample: `import pandas as pd
+
+# 创建DataFrame
+df = pd.DataFrame({
+    "name": ["Alice", "Bob", "Charlie"],
+    "age": [25, 30, 35],
+    "city": ["New York", "London", "Paris"]
+})
+
+print(df)`,
+            difficulty: 'intermediate'
+          }
+        ]
+      }
+    ]
   },
   {
-    id: 'quiz-master',
-    title: '测验专家',
-    description: '在一次测验中获得满分',
-    icon: '⭐',
-    type: 'score',
-    requirement: 100,
-    points: 100
+    id: 'data-visualization',
+    title: '数据可视化',
+    description: '使用Matplotlib和Seaborn等库创建各种数据可视化图表',
+    modules: [
+      {
+        id: 'module-1',
+        name: 'Matplotlib基础',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: 'Matplotlib简介',
+            content: 'Matplotlib是Python中最常用的数据可视化库，可以创建各种类型的图表，如折线图、散点图、柱状图等。',
+            codeExample: `import matplotlib.pyplot as plt
+import numpy as np
+
+# 创建数据
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+
+# 绘制图表
+plt.plot(x, y)
+plt.title("Sin Wave")
+plt.xlabel("x")
+plt.ylabel("sin(x)")
+plt.show()`,
+            difficulty: 'intermediate'
+          }
+        ]
+      }
+    ]
   },
   {
-    id: 'explorer',
-    title: '探索者',
-    description: '浏览所有课程',
-    icon: '🔍',
-    type: 'exploration',
-    requirement: 5,
-    points: 150
+    id: 'machine-learning-basics',
+    title: '机器学习基础',
+    description: '机器学习的基本概念和算法，包括监督学习、无监督学习等',
+    modules: [
+      {
+        id: 'module-1',
+        name: '机器学习入门',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: '机器学习简介',
+            content: '机器学习是人工智能的一个分支，通过算法让计算机从数据中学习并做出预测或决策。',
+            codeExample: `# 简单的线性回归示例
+import numpy as np
+
+# 生成数据
+X = np.array([1, 2, 3, 4, 5])
+y = np.array([2, 4, 6, 8, 10])
+
+# 计算斜率和截距
+slope = np.sum((X - np.mean(X)) * (y - np.mean(y))) / np.sum((X - np.mean(X)) ** 2)
+intercept = np.mean(y) - slope * np.mean(X)
+
+print(f"斜率: {slope}")
+print(f"截距: {intercept}")`,
+            difficulty: 'intermediate'
+          }
+        ]
+      }
+    ]
   },
   {
-    id: 'high-scorer',
-    title: '高分选手',
-    description: '累计获得1000积分',
-    icon: '💎',
-    type: 'score',
-    requirement: 1000,
-    points: 300
+    id: 'web-scraping',
+    title: 'Python爬虫',
+    description: '使用Python进行网络数据采集，包括requests、BeautifulSoup等库的使用',
+    modules: [
+      {
+        id: 'module-1',
+        name: '爬虫基础',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: '爬虫简介',
+            content: '网络爬虫是一种自动获取网页内容的程序，用于数据采集、信息监控等任务。',
+            codeExample: `import requests
+from bs4 import BeautifulSoup
+
+# 发送请求
+response = requests.get('https://example.com')
+
+# 解析HTML
+soup = BeautifulSoup(response.text, 'html.parser')
+
+# 提取标题
+title = soup.find('h1').text
+print(f"网页标题: {title}")`,
+            difficulty: 'intermediate'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'gradient-projects',
+    title: '10个梯度项目',
+    description: '基于Cloudflare免费资源的10个Python数据分析梯度项目，从基础到进阶',
+    modules: [
+      {
+        id: 'project-1',
+        name: '项目1：数据基础处理',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: '项目介绍',
+            content: '本项目主要学习Python基础数据处理，包括数据读取、清洗、转换等基本操作。通过实际案例，掌握数据分析的基本流程。',
+            codeExample: `# 数据基础处理示例
+import pandas as pd
+import numpy as np
+
+# 生成示例数据
+data = {
+    'name': ['Alice', 'Bob', 'Charlie', 'David', 'Eve'],
+    'age': [25, 30, 35, 40, 45],
+    'salary': [50000, 60000, 70000, 80000, 90000]
+}
+
+df = pd.DataFrame(data)
+print(df)
+
+# 基本数据处理
+print('\n数据描述:')
+print(df.describe())
+
+print('\n按年龄排序:')
+print(df.sort_values('age'))`,
+            difficulty: 'beginner'
+          }
+        ]
+      },
+      {
+        id: 'project-2',
+        name: '项目2：数据可视化',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: '项目介绍',
+            content: '本项目主要学习使用Matplotlib和Seaborn进行数据可视化，通过各种图表展示数据特征和趋势。',
+            codeExample: `# 数据可视化示例
+import matplotlib.pyplot as plt
+import numpy as np
+
+# 生成数据
+x = np.linspace(0, 10, 100)
+y1 = np.sin(x)
+y2 = np.cos(x)
+
+# 绘制图表
+plt.figure(figsize=(10, 6))
+plt.plot(x, y1, label='sin(x)', color='blue')
+plt.plot(x, y2, label='cos(x)', color='red')
+plt.title('三角函数图像')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.legend()
+plt.grid(True)
+plt.show()`,
+            difficulty: 'beginner'
+          }
+        ]
+      },
+      {
+        id: 'project-3',
+        name: '项目3：统计分析',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: '项目介绍',
+            content: '本项目主要学习基本的统计分析方法，包括描述性统计、假设检验、相关性分析等。',
+            codeExample: `# 统计分析示例
+import numpy as np
+import pandas as pd
+
+# 生成随机数据
+np.random.seed(42)
+data = np.random.normal(100, 15, 1000)
+
+# 计算基本统计量
+mean = np.mean(data)
+median = np.median(data)
+std = np.std(data)
+
+print(f'均值: {mean:.2f}')
+print(f'中位数: {median:.2f}')
+print(f'标准差: {std:.2f}')
+
+# 计算分位数
+q25, q75 = np.percentile(data, [25, 75])
+print(f'25%分位数: {q25:.2f}')
+print(f'75%分位数: {q75:.2f}')`,
+            difficulty: 'intermediate'
+          }
+        ]
+      },
+      {
+        id: 'project-4',
+        name: '项目4：回归分析',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: '项目介绍',
+            content: '本项目主要学习线性回归和多元回归分析，通过实际案例掌握回归模型的构建和评估方法。',
+            codeExample: `# 回归分析示例
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 生成数据
+np.random.seed(42)
+X = np.linspace(0, 10, 100)
+y = 2 * X + 1 + np.random.normal(0, 1, 100)
+
+# 计算回归系数
+X_mean = np.mean(X)
+y_mean = np.mean(y)
+
+numerator = np.sum((X - X_mean) * (y - y_mean))
+denominator = np.sum((X - X_mean) ** 2)
+
+slope = numerator / denominator
+intercept = y_mean - slope * X_mean
+
+print(f'斜率: {slope:.2f}')
+print(f'截距: {intercept:.2f}')
+
+# 绘制回归直线
+plt.figure(figsize=(10, 6))
+plt.scatter(X, y, label='数据点')
+plt.plot(X, slope * X + intercept, color='red', label='回归直线')
+plt.title('线性回归示例')
+plt.xlabel('X')
+plt.ylabel('y')
+plt.legend()
+plt.show()`,
+            difficulty: 'intermediate'
+          }
+        ]
+      },
+      {
+        id: 'project-5',
+        name: '项目5：分类算法',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: '项目介绍',
+            content: '本项目主要学习分类算法，包括决策树、K近邻、逻辑回归等，通过实际案例掌握分类模型的构建和评估方法。',
+            codeExample: `# 分类算法示例
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+# 生成分类数据
+X, y = make_classification(n_samples=1000, n_features=2, n_informative=2, n_redundant=0, random_state=42)
+
+# 划分训练集和测试集
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 训练逻辑回归模型
+model = LogisticRegression()
+model.fit(X_train, y_train)
+
+# 预测
+y_pred = model.predict(X_test)
+
+# 计算准确率
+accuracy = accuracy_score(y_test, y_pred)
+print(f'准确率: {accuracy:.2f}')
+
+# 绘制决策边界
+plt.figure(figsize=(10, 6))
+h = 0.02
+x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
+Z = model.predict(np.c_[xx.ravel(), yy.ravel()])
+Z = Z.reshape(xx.shape)
+plt.contourf(xx, yy, Z, alpha=0.8)
+plt.scatter(X[:, 0], X[:, 1], c=y, edgecolors='k')
+plt.title('逻辑回归决策边界')
+plt.show()`,
+            difficulty: 'intermediate'
+          }
+        ]
+      },
+      {
+        id: 'project-6',
+        name: '项目6：聚类分析',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: '项目介绍',
+            content: '本项目主要学习聚类分析算法，包括K-means、层次聚类等，通过实际案例掌握聚类模型的构建和评估方法。',
+            codeExample: `# 聚类分析示例
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_blobs
+from sklearn.cluster import KMeans
+
+# 生成聚类数据
+X, y_true = make_blobs(n_samples=300, centers=4, cluster_std=0.60, random_state=42)
+
+# 应用K-means聚类
+kmeans = KMeans(n_clusters=4, random_state=42)
+y_kmeans = kmeans.fit_predict(X)
+
+# 绘制聚类结果
+plt.figure(figsize=(10, 6))
+plt.scatter(X[:, 0], X[:, 1], c=y_kmeans, s=50, cmap='viridis')
+centers = kmeans.cluster_centers_
+plt.scatter(centers[:, 0], centers[:, 1], c='red', s=200, alpha=0.75)
+plt.title('K-means聚类结果')
+plt.show()`,
+            difficulty: 'intermediate'
+          }
+        ]
+      },
+      {
+        id: 'project-7',
+        name: '项目7：时间序列分析',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: '项目介绍',
+            content: '本项目主要学习时间序列分析方法，包括趋势分析、季节性分析、预测等，通过实际案例掌握时间序列数据的处理和分析方法。',
+            codeExample: `# 时间序列分析示例
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# 生成时间序列数据
+dates = pd.date_range('2020-01-01', periods=365)
+values = 100 + np.cumsum(np.random.randn(365)) + np.sin(np.arange(365) * 2 * np.pi / 30) * 10
+
+# 创建DataFrame
+df = pd.DataFrame({'date': dates, 'value': values})
+df.set_index('date', inplace=True)
+
+# 绘制时间序列
+plt.figure(figsize=(12, 6))
+plt.plot(df.index, df['value'])
+plt.title('时间序列数据')
+plt.xlabel('日期')
+plt.ylabel('值')
+plt.grid(True)
+plt.show()
+
+# 计算移动平均
+df['MA7'] = df['value'].rolling(window=7).mean()
+plt.figure(figsize=(12, 6))
+plt.plot(df.index, df['value'], label='原始数据')
+plt.plot(df.index, df['MA7'], label='7天移动平均', color='red')
+plt.title('时间序列与移动平均')
+plt.xlabel('日期')
+plt.ylabel('值')
+plt.legend()
+plt.grid(True)
+plt.show()`,
+            difficulty: 'advanced'
+          }
+        ]
+      },
+      {
+        id: 'project-8',
+        name: '项目8：特征工程',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: '项目介绍',
+            content: '本项目主要学习特征工程方法，包括特征选择、特征提取、特征转换等，通过实际案例掌握如何构建有效的特征集。',
+            codeExample: `# 特征工程示例
+import numpy as np
+import pandas as pd
+from sklearn.feature_selection import SelectKBest, f_regression
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+
+# 生成示例数据
+data = {
+    'age': [25, 30, 35, 40, 45],
+    'gender': ['M', 'F', 'M', 'F', 'M'],
+    'salary': [50000, 60000, 70000, 80000, 90000],
+    'experience': [2, 5, 8, 10, 15],
+    'performance': [75, 82, 88, 90, 95]
+}
+
+df = pd.DataFrame(data)
+
+# 类别特征编码
+encoder = OneHotEncoder(drop='first', sparse_output=False)
+gender_encoded = encoder.fit_transform(df[['gender']])
+gender_df = pd.DataFrame(gender_encoded, columns=['gender_M'])
+df = pd.concat([df, gender_df], axis=1)
+df.drop('gender', axis=1, inplace=True)
+
+# 特征标准化
+scaler = StandardScaler()
+scaled_features = scaler.fit_transform(df[['age', 'salary', 'experience']])
+scaled_df = pd.DataFrame(scaled_features, columns=['age_scaled', 'salary_scaled', 'experience_scaled'])
+df = pd.concat([df, scaled_df], axis=1)
+df.drop(['age', 'salary', 'experience'], axis=1, inplace=True)
+
+# 特征选择
+X = df.drop('performance', axis=1)
+y = df['performance']
+
+selector = SelectKBest(f_regression, k=2)
+X_selected = selector.fit_transform(X, y)
+
+print('原始特征:')
+print(X.columns.tolist())
+print('\n选择的特征:')
+print(X.columns[selector.get_support()].tolist())
+print('\n特征得分:')
+print(dict(zip(X.columns, selector.scores_)))`,
+            difficulty: 'advanced'
+          }
+        ]
+      },
+      {
+        id: 'project-9',
+        name: '项目9：模型集成',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: '项目介绍',
+            content: '本项目主要学习模型集成方法，包括 Bagging、Boosting、Stacking 等，通过实际案例掌握如何构建集成模型以提高预测性能。',
+            codeExample: `# 模型集成示例
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, VotingClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score
+
+# 生成分类数据
+X, y = make_classification(n_samples=1000, n_features=20, n_informative=15, n_redundant=5, random_state=42)
+
+# 划分训练集和测试集
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 构建基础模型
+rf = RandomForestClassifier(n_estimators=100, random_state=42)
+adaboost = AdaBoostClassifier(n_estimators=100, random_state=42)
+logreg = LogisticRegression(random_state=42)
+svc = SVC(probability=True, random_state=42)
+
+# 构建投票分类器
+voting_clf = VotingClassifier(
+    estimators=[('rf', rf), ('adaboost', adaboost), ('logreg', logreg), ('svc', svc)],
+    voting='soft'
+)
+
+# 训练所有模型
+models = {'Random Forest': rf, 'AdaBoost': adaboost, 'Logistic Regression': logreg, 'SVM': svc, 'Voting Classifier': voting_clf}
+
+for name, model in models.items():
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    accuracy = accuracy_score(y_test, y_pred)
+    print(f'{name} 准确率: {accuracy:.4f}')`,
+            difficulty: 'advanced'
+          }
+        ]
+      },
+      {
+        id: 'project-10',
+        name: '项目10：完整数据分析项目',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: '项目介绍',
+            content: '本项目是一个完整的数据分析项目，综合运用前面所学的各种方法，从数据获取、清洗、分析到可视化和报告生成，完成一个端到端的数据分析任务。',
+            codeExample: `# 完整数据分析项目示例
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+# 生成示例数据
+np.random.seed(42)
+n = 1000
+
+# 特征
+age = np.random.randint(20, 70, n)
+experience = np.random.randint(1, 30, n)
+education = np.random.randint(1, 5, n)  # 1-4代表不同教育水平
+
+# 目标变量：薪资
+salary = 50000 + age * 500 + experience * 2000 + education * 10000 + np.random.normal(0, 10000, n)
+
+# 创建DataFrame
+df = pd.DataFrame({
+    'age': age,
+    'experience': experience,
+    'education': education,
+    'salary': salary
+})
+
+# 数据探索
+print('数据基本信息:')
+print(df.info())
+print('\n数据描述性统计:')
+print(df.describe())
+
+# 相关性分析
+print('\n相关性矩阵:')
+print(df.corr())
+
+# 数据可视化
+plt.figure(figsize=(12, 10))
+
+# 薪资分布
+plt.subplot(2, 2, 1)
+sns.histplot(df['salary'], kde=True)
+plt.title('薪资分布')
+
+# 年龄与薪资关系
+plt.subplot(2, 2, 2)
+sns.scatterplot(x='age', y='salary', data=df)
+plt.title('年龄与薪资关系')
+
+# 工作经验与薪资关系
+plt.subplot(2, 2, 3)
+sns.scatterplot(x='experience', y='salary', data=df)
+plt.title('工作经验与薪资关系')
+
+# 教育水平与薪资关系
+plt.subplot(2, 2, 4)
+sns.boxplot(x='education', y='salary', data=df)
+plt.title('教育水平与薪资关系')
+
+plt.tight_layout()
+plt.show()
+
+# 构建回归模型
+X = df[['age', 'experience', 'education']]
+y = df['salary']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test)
+
+# 模型评估
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+
+print('\n模型评估:')
+print(f'均方误差 (MSE): {mse:.2f}')
+print(f'R² 评分: {r2:.4f}')
+
+# 模型系数
+print('\n模型系数:')
+print(f'截距: {model.intercept_:.2f}')
+print(f'年龄系数: {model.coef_[0]:.2f}')
+print(f'经验系数: {model.coef_[1]:.2f}')
+print(f'教育系数: {model.coef_[2]:.2f}')`,
+            difficulty: 'advanced'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'ai-business-analytics',
+    title: 'AI时代商务数据分析',
+    description: '面向商务数据分析与应用专业学生，紧扣AI时代发展趋势的10个递进式Python训练项目',
+    modules: [
+      {
+        id: 'project-1',
+        name: '项目1：零售销售数据清洗与探索性分析',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: '项目介绍',
+            content: '在AI驱动的自动化分析体系中，高质量数据是智能体进行决策的前提。本项目强调"可信数据"原则，培养学生对数据质量的敏感度。针对某连锁超市的历史销售记录，识别并处理缺失、异常与重复数据，计算核心销售指标，完成初步的数据概览与分布分析。',
+            codeExample: `import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 加载数据
+df = pd.read_csv('sales_data.csv')
+
+# 检查缺失值
+print('缺失值检查:')
+print(df.isnull().sum())
+
+# 填充缺失值
+df['Item_Weight'].fillna(df['Item_Weight'].median(), inplace=True)
+df['Outlet_Size'].fillna(df['Outlet_Size'].mode()[0], inplace=True)
+
+# 删除重复记录
+df.drop_duplicates(inplace=True)
+
+# 转换日期字段
+df['Order_Date'] = pd.to_datetime(df['Order_Date'])
+
+# 按商品类别分组统计
+sales_by_category = df.groupby('Item_Type').agg({
+    'Sales': 'sum',
+    'Order_ID': 'count'
+}).rename(columns={'Order_ID': 'Order_Count'})
+
+sales_by_category['Average_Price'] = sales_by_category['Sales'] / sales_by_category['Order_Count']
+
+print('按商品类别统计:')
+print(sales_by_category)
+
+# 绘制销售额分布
+plt.figure(figsize=(10, 6))
+plt.hist(df['Sales'], bins=30)
+plt.title('销售额分布')
+plt.xlabel('销售额')
+plt.ylabel('频率')
+plt.show()`,
+            difficulty: 'beginner'
+          }
+        ]
+      },
+      {
+        id: 'project-2',
+        name: '项目2：电商平台用户行为可视化看板',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: '项目介绍',
+            content: '响应"对话式探索"趋势，现代BI系统支持多轮交互与动态钻取，让数据主动讲述业务故事。本项目训练学生将数据转化为直观洞察的能力。基于淘宝双十一大促期间的用户行为日志，分析不同商品类目的访问趋势、用户活跃时段分布及流量来源构成。',
+            codeExample: `import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# 加载数据
+df = pd.read_csv('user_behavior.csv')
+df['timestamp'] = pd.to_datetime(df['timestamp'])
+
+# 按小时统计点击量
+df['hour'] = df['timestamp'].dt.hour
+df['day'] = df['timestamp'].dt.dayofweek
+
+# 绘制时间趋势
+hourly_counts = df.groupby('hour').size()
+plt.figure(figsize=(12, 6))
+hourly_counts.plot(kind='line')
+plt.title('每小时用户点击量')
+plt.xlabel('小时')
+plt.ylabel('点击量')
+plt.grid(True)
+plt.show()
+
+# 构建热力图
+heatmap_data = df.groupby(['day', 'hour']).size().unstack()
+plt.figure(figsize=(12, 6))
+sns.heatmap(heatmap_data, cmap='YlOrRd')
+plt.title('用户活跃热力图（星期-小时）')
+plt.xlabel('小时')
+plt.ylabel('星期')
+plt.show()
+
+# 流量来源分析
+source_counts = df['source'].value_counts()
+plt.figure(figsize=(8, 8))
+source_counts.plot(kind='pie', autopct='%1.1f%%')
+plt.title('流量来源分布')
+plt.ylabel('')
+plt.show()`,
+            difficulty: 'beginner'
+          }
+        ]
+      },
+      {
+        id: 'project-3',
+        name: '项目3：客户价值分层（RFM模型）分析',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: '项目介绍',
+            content: 'AI时代分析师角色正从"执行者"转向"思考者"，聚焦于高价值客户识别与个性化运营策略制定。RFM模型是实现精准营销的基础工具。利用全球商超采购数据，基于客户的最近购买时间、消费频率和消费金额三个维度，构建RFM评分体系，将客户划分为不同价值群体。',
+            codeExample: `import pandas as pd
+import numpy as np
+from sklearn.preprocessing import MinMaxScaler
+
+# 加载数据
+df = pd.read_csv('customer_data.csv')
+df['Order_Date'] = pd.to_datetime(df['Order_Date'])
+
+# 计算RFM值
+current_date = df['Order_Date'].max() + pd.Timedelta(days=1)
+rfm = df.groupby('Customer_ID').agg({
+    'Order_Date': lambda x: (current_date - x.max()).days,  # Recency
+    'Order_ID': 'count',  # Frequency
+    'Sales': 'sum'  # Monetary
+}).rename(columns={'Order_Date': 'Recency', 'Order_ID': 'Frequency', 'Sales': 'Monetary'})
+
+# RFM评分（1-5分，越高越好）
+rfm['R_Score'] = pd.qcut(rfm['Recency'], 5, labels=[5, 4, 3, 2, 1])
+rfm['F_Score'] = pd.qcut(rfm['Frequency'], 5, labels=[1, 2, 3, 4, 5])
+rfm['M_Score'] = pd.qcut(rfm['Monetary'], 5, labels=[1, 2, 3, 4, 5])
+
+# 计算综合得分（权重：R=0.3, F=0.4, M=0.3）
+rfm['RFM_Score'] = rfm['R_Score'].astype(int) * 0.3 + rfm['F_Score'].astype(int) * 0.4 + rfm['M_Score'].astype(int) * 0.3
+
+# 客户分层
+def get_customer_segment(score):
+    if score >= 4.5:
+        return '高价值客户'
+    elif score >= 3.5:
+        return '潜力客户'
+    elif score >= 2.5:
+        return '一般客户'
+    else:
+        return '流失风险客户'
+
+rfm['Segment'] = rfm['RFM_Score'].apply(get_customer_segment)
+
+print('客户分层结果:')
+print(rfm['Segment'].value_counts())
+
+# 分析各层级客户特征
+segment_stats = rfm.groupby('Segment').agg({
+    'Recency': 'mean',
+    'Frequency': 'mean',
+    'Monetary': 'mean',
+    'RFM_Score': 'mean'
+}).round(2)
+
+print('各层级客户特征:')
+print(segment_stats)`,
+            difficulty: 'intermediate'
+          }
+        ]
+      },
+      {
+        id: 'project-4',
+        name: '项目4：商品销量时间序列预测（Prophet）',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: '项目介绍',
+            content: '轻量化AI模型正广泛应用于企业级预测场景，支撑从库存管理到营销规划的"全闭环分析"。Prophet因其对节假日效应的良好支持成为电商首选。基于服装品牌的日销量历史数据，使用Facebook开源的Prophet模型预测未来一周的销售额，特别处理双十一、618等大促事件的影响。',
+            codeExample: `import pandas as pd
+from prophet import Prophet
+import matplotlib.pyplot as plt
+
+# 加载数据
+df = pd.read_csv('sales_time_series.csv')
+df['ds'] = pd.to_datetime(df['date'])
+df['y'] = df['sales']
+df = df[['ds', 'y']]
+
+# 定义大促活动
+holidays = pd.DataFrame({
+    'holiday': 'promotion',
+    'ds': pd.to_datetime(['2023-11-11', '2023-06-18', '2024-11-11', '2024-06-18']),
+    'lower_window': 0,
+    'upper_window': 2,
+})
+
+# 初始化并训练模型
+model = Prophet(
+    yearly_seasonality=True,
+    seasonality_mode='multiplicative',
+    holidays=holidays
+)
+model.fit(df)
+
+# 预测未来7天
+future = model.make_future_dataframe(periods=7)
+forecast = model.predict(future)
+
+# 计算评估指标
+actual = df['y'].values
+predicted = forecast['yhat'][:-7].values
+mape = np.mean(np.abs((actual - predicted) / actual)) * 100
+rmse = np.sqrt(np.mean((actual - predicted) ** 2))
+
+print(f'MAPE: {mape:.2f}%')
+print(f'RMSE: {rmse:.2f}')
+
+# 绘制预测结果
+fig = model.plot(forecast)
+plt.title('商品销量预测')
+plt.xlabel('日期')
+plt.ylabel('销量')
+plt.show()
+
+fig2 = model.plot_components(forecast)
+plt.show()`,
+            difficulty: 'intermediate'
+          }
+        ]
+      },
+      {
+        id: 'project-5',
+        name: '项目5：跨平台商品价格与销量对比分析',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: '项目介绍',
+            content: '多源数据整合能力是构建企业"生态化协同"分析体系的关键。本项目模拟企业监控竞品定价、制定跨渠道策略的真实需求。采集淘宝、京东、拼多多等平台上同一品类商品的价格与销量数据，比较各平台的价格分布差异，分析价格与销量之间的相关性。',
+            codeExample: `import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# 加载多平台数据
+taobao_data = pd.read_csv('taobao_data.csv')
+jd_data = pd.read_csv('jd_data.csv')
+pdd_data = pd.read_csv('pdd_data.csv')
+
+# 添加平台标识
+taobao_data['platform'] = '淘宝'
+jd_data['platform'] = '京东'
+pdd_data['platform'] = '拼多多'
+
+# 合并数据
+all_data = pd.concat([taobao_data, jd_data, pdd_data], ignore_index=True)
+
+# 价格分布分析
+plt.figure(figsize=(12, 6))
+sns.histplot(data=all_data, x='price', hue='platform', multiple='stack', bins=30)
+plt.title('各平台价格分布')
+plt.xlabel('价格')
+plt.ylabel('商品数量')
+plt.show()
+
+# 价格与销量关系
+plt.figure(figsize=(12, 6))
+sns.scatterplot(data=all_data, x='price', y='sales', hue='platform', alpha=0.6)
+plt.title('价格与销量关系')
+plt.xlabel('价格')
+plt.ylabel('销量')
+plt.grid(True)
+plt.show()
+
+# 各平台平均价格和销量
+platform_stats = all_data.groupby('platform').agg({
+    'price': 'mean',
+    'sales': 'mean'
+}).round(2)
+
+print('各平台统计:')
+print(platform_stats)`,
+            difficulty: 'intermediate'
+          }
+        ]
+      },
+      {
+        id: 'project-6',
+        name: '项目6：用户流失预警模型（逻辑回归）',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: '项目介绍',
+            content: '"智能运营Agent"可根据行为信号实时执行用户干预策略，实现"周级"到"实时"的跃迁。本项目构建预测模型以识别高流失风险用户。基于银行客户营销数据，利用登录频次、账户余额、联系时长等特征，构建二分类模型预测客户是否会响应定期存款推广活动。',
+            codeExample: `import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report, roc_auc_score, roc_curve
+import matplotlib.pyplot as plt
+
+# 加载数据
+df = pd.read_csv('bank_marketing.csv')
+
+# 数据预处理
+cat_cols = ['job', 'marital', 'education', 'default', 'housing', 'loan', 'contact', 'month', 'poutcome']
+df = pd.get_dummies(df, columns=cat_cols, drop_first=True)
+df['y'] = df['y'].map({'yes': 1, 'no': 0})
+
+# 特征和目标变量
+X = df.drop('y', axis=1)
+y = df['y']
+
+# 划分训练集和测试集
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 训练逻辑回归模型
+model = LogisticRegression(max_iter=1000)
+model.fit(X_train, y_train)
+
+# 预测
+y_pred = model.predict(X_test)
+y_pred_proba = model.predict_proba(X_test)[:, 1]
+
+# 模型评估
+print(classification_report(y_test, y_pred))
+print(f'AUC-ROC: {roc_auc_score(y_test, y_pred_proba):.4f}')
+
+# 绘制ROC曲线
+fpr, tpr, thresholds = roc_curve(y_test, y_pred_proba)
+plt.figure(figsize=(10, 6))
+plt.plot(fpr, tpr, label=f'ROC Curve (AUC = {roc_auc_score(y_test, y_pred_proba):.4f})')
+plt.plot([0, 1], [0, 1], 'k--')
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('ROC Curve')
+plt.legend()
+plt.show()
+
+# 特征重要性
+feature_importance = pd.DataFrame({
+    'feature': X.columns,
+    'importance': np.abs(model.coef_[0])
+}).sort_values('importance', ascending=False)
+
+print('前10个重要特征:')
+print(feature_importance.head(10))`,
+            difficulty: 'intermediate'
+          }
+        ]
+      },
+      {
+        id: 'project-7',
+        name: '项目7：电商购物篮关联规则挖掘（Apriori）',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: '项目介绍',
+            content: '发现隐藏的商品组合规律，可为"采购Agent"提供捆绑销售与货架陈列优化建议，提升连带率。Apriori算法是市场篮分析的经典方法。分析杂货店用户的交易记录，挖掘频繁出现的商品组合，计算支持度、置信度和提升度，找出具有商业价值的强关联规则。',
+            codeExample: `import pandas as pd
+from mlxtend.frequent_patterns import apriori, association_rules
+
+# 加载数据
+df = pd.read_csv('groceries.csv')
+
+# 转换为事务-物品矩阵
+basket = pd.get_dummies(df['items'].str.split(',').apply(pd.Series).stack()).groupby(level=0).sum()
+basket = basket.applymap(lambda x: 1 if x > 0 else 0)
+
+# 生成频繁项集
+frequent_itemsets = apriori(basket, min_support=0.02, use_colnames=True)
+
+# 生成关联规则
+rules = association_rules(frequent_itemsets, metric="lift", min_threshold=1.2)
+
+# 筛选强规则
+strong_rules = rules[rules['lift'] > 1.2].sort_values('lift', ascending=False)
+
+print('Top 10强关联规则:')
+print(strong_rules[['antecedents', 'consequents', 'support', 'confidence', 'lift']].head(10))
+
+# 规则可视化
+plt.figure(figsize=(12, 8))
+sns.scatterplot(data=strong_rules, x='support', y='confidence', size='lift', hue='lift', palette='viridis', sizes=(20, 200))
+plt.title('关联规则支持度 vs 置信度')
+plt.xlabel('支持度')
+plt.ylabel('置信度')
+plt.show()`,
+            difficulty: 'intermediate'
+          }
+        ]
+      },
+      {
+        id: 'project-8',
+        name: '项目8：信用卡申请反欺诈评分卡',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: '项目介绍',
+            content: '现代风控系统采用"模型+规则"混合决策机制，在提升效率的同时保障安全性。评分卡将复杂模型转化为业务人员可理解的信用等级。基于脱敏后的信贷申请数据，构建个人信用评分卡。通过变量分箱、WOE编码与逻辑回归建模，将预测概率映射为标准分值。',
+            codeExample: `import pandas as pd
+import numpy as np
+from sklearn.linear_model import LogisticRegression
+
+# 加载数据
+df = pd.read_csv('credit_application.csv')
+
+# 简单分箱函数
+def bin_variable(df, var, target, bins=5):
+    df[f'{var}_bin'] = pd.qcut(df[var], bins, duplicates='drop')
+    # 计算WOE
+    grouped = df.groupby(f'{var}_bin')[target].agg(['count', 'sum'])
+    grouped['non_event'] = grouped['count'] - grouped['sum']
+    grouped['event_rate'] = grouped['sum'] / grouped['sum'].sum()
+    grouped['non_event_rate'] = grouped['non_event'] / grouped['non_event'].sum()
+    grouped['woe'] = np.log(grouped['event_rate'] / grouped['non_event_rate'])
+    grouped['iv'] = (grouped['event_rate'] - grouped['non_event_rate']) * grouped['woe']
+    return grouped
+
+# 对连续变量进行分箱和WOE编码
+for var in ['age', 'income', 'loan_amount', 'credit_score']:
+    bin_results = bin_variable(df, var, 'default')
+    print(f'\n{var}的WOE和IV:')
+    print(bin_results[['woe', 'iv']])
+    print(f'Total IV: {bin_results["iv"].sum():.4f}')
+
+# 筛选高价值特征（IV≥0.1）
+high_iv_features = ['income', 'credit_score', 'loan_amount']
+
+# 构建特征矩阵
+X = df[high_iv_features]
+y = df['default']
+
+# 训练逻辑回归模型
+model = LogisticRegression()
+model.fit(X, y)
+
+# 计算概率
+probabilities = model.predict_proba(X)[:, 1]
+
+# 映射为标准评分（300-900）
+score_offset = 600
+score_factor = 50
+scores = score_offset - score_factor * np.log(probabilities / (1 - probabilities))
+
+# 添加评分到数据框
+df['credit_score'] = scores
+
+print('\n信用评分分布:')
+print(df['credit_score'].describe())
+
+# 设置评分等级
+def get_credit_rating(score):
+    if score >= 750:
+        return '优秀'
+    elif score >= 650:
+        return '良好'
+    elif score >= 550:
+        return '一般'
+    else:
+        return '较差'
+
+df['rating'] = df['credit_score'].apply(get_credit_rating)
+print('\n评分等级分布:')
+print(df['rating'].value_counts())`,
+            difficulty: 'advanced'
+          }
+        ]
+      },
+      {
+        id: 'project-9',
+        name: '项目9：个性化商品推荐系统（协同过滤）',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: '项目介绍',
+            content: '推荐系统是"数字员工"级别的精准营销工具，能显著提升转化效率与用户体验。协同过滤是推荐算法的基础范式之一。基于Olist电商平台的用户-商品交互数据，实现基于用户的协同过滤算法，为指定用户推荐其可能感兴趣但尚未购买的商品。',
+            codeExample: `import pandas as pd
+import numpy as np
+from sklearn.metrics.pairwise import cosine_similarity
+
+# 加载数据
+orders = pd.read_csv('olist_orders.csv')
+order_items = pd.read_csv('olist_order_items.csv')
+customers = pd.read_csv('olist_customers.csv')
+
+# 合并数据
+df = pd.merge(orders, order_items, on='order_id')
+df = pd.merge(df, customers, on='customer_id')
+
+# 构建用户-商品矩阵
+user_item_matrix = df.pivot_table(index='customer_unique_id', columns='product_id', values='price', aggfunc='count').fillna(0)
+
+# 计算用户相似度
+user_similarity = cosine_similarity(user_item_matrix)
+user_similarity_df = pd.DataFrame(user_similarity, index=user_item_matrix.index, columns=user_item_matrix.index)
+
+# 推荐函数
+def recommend_products(user_id, n=10):
+    # 获取用户相似度
+    user_sim = user_similarity_df[user_id].sort_values(ascending=False)
+    # 排除用户自己
+    user_sim = user_sim[user_sim.index != user_id]
+    # 取前10个最相似的用户
+    top_similar_users = user_sim.head(10).index
+    
+    # 获取相似用户购买的商品
+    similar_users_items = user_item_matrix.loc[top_similar_users]
+    # 获取目标用户已购买的商品
+    user_purchased = user_item_matrix.loc[user_id]
+    user_purchased = user_purchased[user_purchased > 0].index
+    
+    # 计算商品推荐分数
+    item_scores = similar_users_items.sum(axis=0)
+    # 排除用户已购买的商品
+    item_scores = item_scores.drop(user_purchased, errors='ignore')
+    # 排序并推荐
+    recommendations = item_scores.sort_values(ascending=False).head(n)
+    
+    return recommendations
+
+# 测试推荐
+sample_user = user_item_matrix.index[0]
+print(f'为用户 {sample_user} 推荐的商品:')
+recommendations = recommend_products(sample_user)
+print(recommendations)
+
+# 评估推荐系统（简单评估）
+def evaluate_recommendation(user_id, n=10):
+    # 模拟测试：随机选择用户已购买的商品作为"测试集"
+    user_purchased = user_item_matrix.loc[user_id]
+    user_purchased = user_purchased[user_purchased > 0].index
+    
+    if len(user_purchased) < 2:
+        return 0
+    
+    # 随机选择一个商品作为测试
+    test_item = np.random.choice(user_purchased)
+    # 构建临时用户矩阵（移除测试商品）
+    temp_matrix = user_item_matrix.copy()
+    temp_matrix.loc[user_id, test_item] = 0
+    
+    # 计算相似度
+    temp_similarity = cosine_similarity(temp_matrix)
+    temp_similarity_df = pd.DataFrame(temp_similarity, index=temp_matrix.index, columns=temp_matrix.index)
+    
+    # 获取相似用户
+    user_sim = temp_similarity_df[user_id].sort_values(ascending=False)
+    user_sim = user_sim[user_sim.index != user_id]
+    top_similar_users = user_sim.head(10).index
+    
+    # 检查测试商品是否在相似用户的购买列表中
+    similar_users_items = temp_matrix.loc[top_similar_users]
+    test_item_score = similar_users_items[test_item].sum()
+    
+    # 如果测试商品出现在推荐中，返回1，否则返回0
+    return 1 if test_item_score > 0 else 0
+
+# 评估推荐系统
+accuracy = []
+for i, user_id in enumerate(user_item_matrix.index[:100]):
+    acc = evaluate_recommendation(user_id)
+    accuracy.append(acc)
+
+print(f'推荐系统准确率: {np.mean(accuracy):.4f}')`,
+            difficulty: 'advanced'
+          }
+        ]
+      },
+      {
+        id: 'project-10',
+        name: '项目10：全流程商务数据分析自动化报告',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: '项目介绍',
+            content: '模拟"数据分析Agent"的工作流，实现从原始数据到最终报告的无人值守自动化，体现AI时代的生产力变革。综合运用前述九个项目所学技能，构建一个端到端的自动化分析管道。系统能定时读取新数据，自动完成清洗、分析、建模与可视化，并生成标准化的PDF报告。',
+            codeExample: `import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from jinja2 import Template
+import pdfkit
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.application import MIMEApplication
+from email.mime.text import MIMEText
+import os
+
+# 数据清洗模块
+def clean_data(file_path):
+    df = pd.read_csv(file_path)
+    # 处理缺失值
+    df = df.dropna()
+    # 处理重复值
+    df = df.drop_duplicates()
+    # 转换日期格式
+    if 'date' in df.columns:
+        df['date'] = pd.to_datetime(df['date'])
+    return df
+
+# 数据分析模块
+def analyze_data(df):
+    analysis_results = {}
+    
+    # 基本统计
+    analysis_results['basic_stats'] = df.describe().round(2)
+    
+    # 销售趋势
+    if 'date' in df.columns and 'sales' in df.columns:
+        df['month'] = df['date'].dt.to_period('M')
+        monthly_sales = df.groupby('month')['sales'].sum()
+        analysis_results['monthly_sales'] = monthly_sales
+    
+    # 产品类别分析
+    if 'category' in df.columns and 'sales' in df.columns:
+        category_sales = df.groupby('category')['sales'].sum().sort_values(ascending=False)
+        analysis_results['category_sales'] = category_sales
+    
+    return analysis_results
+
+# 数据可视化模块
+def generate_visualizations(df, analysis_results, output_dir):
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # 销售趋势图
+    if 'monthly_sales' in analysis_results:
+        plt.figure(figsize=(12, 6))
+        analysis_results['monthly_sales'].plot(kind='bar')
+        plt.title('月度销售趋势')
+        plt.xlabel('月份')
+        plt.ylabel('销售额')
+        plt.tight_layout()
+        plt.savefig(os.path.join(output_dir, 'sales_trend.png'))
+        plt.close()
+    
+    # 产品类别销售图
+    if 'category_sales' in analysis_results:
+        plt.figure(figsize=(12, 6))
+        analysis_results['category_sales'].plot(kind='pie', autopct='%1.1f%%')
+        plt.title('产品类别销售分布')
+        plt.ylabel('')
+        plt.tight_layout()
+        plt.savefig(os.path.join(output_dir, 'category_distribution.png'))
+        plt.close()
+    
+    # 销售额分布
+    if 'sales' in df.columns:
+        plt.figure(figsize=(12, 6))
+        sns.histplot(df['sales'], bins=30)
+        plt.title('销售额分布')
+        plt.xlabel('销售额')
+        plt.ylabel('频率')
+        plt.tight_layout()
+        plt.savefig(os.path.join(output_dir, 'sales_distribution.png'))
+        plt.close()
+
+# 报告生成模块
+def generate_report(analysis_results, visualization_dir, output_path):
+    # 读取HTML模板
+    with open('report_template.html', 'r', encoding='utf-8') as f:
+        template_content = f.read()
+    
+    template = Template(template_content)
+    
+    # 准备数据
+    context = {
+        'basic_stats': analysis_results['basic_stats'].to_html(),
+        'visualization_dir': visualization_dir
+    }
+    
+    # 渲染HTML
+    html_content = template.render(**context)
+    
+    # 转换为PDF
+    pdfkit.from_string(html_content, output_path)
+
+# 邮件发送模块
+def send_email(report_path, recipient):
+    # 邮件配置
+    sender = 'your_email@example.com'
+    password = 'your_password'
+    smtp_server = 'smtp.example.com'
+    smtp_port = 587
+    
+    # 创建邮件
+    msg = MIMEMultipart()
+    msg['From'] = sender
+    msg['To'] = recipient
+    msg['Subject'] = '商务数据分析自动化报告'
+    
+    # 添加正文
+    body = '尊敬的用户，附件是最新的商务数据分析报告，请查收。'
+    msg.attach(MIMEText(body, 'plain', 'utf-8'))
+    
+    # 添加附件
+    with open(report_path, 'rb') as f:
+        attach = MIMEApplication(f.read(), _subtype='pdf')
+        attach.add_header('Content-Disposition', 'attachment', filename=os.path.basename(report_path))
+        msg.attach(attach)
+    
+    # 发送邮件
+    with smtplib.SMTP(smtp_server, smtp_port) as server:
+        server.starttls()
+        server.login(sender, password)
+        server.send_message(msg)
+
+# 主程序
+def main():
+    # 配置
+    data_file = 'sales_data.csv'
+    output_dir = 'output'
+    report_path = os.path.join(output_dir, 'business_analysis_report.pdf')
+    recipient = 'recipient@example.com'
+    
+    # 执行流程
+    print('1. 清洗数据...')
+    df = clean_data(data_file)
+    
+    print('2. 分析数据...')
+    analysis_results = analyze_data(df)
+    
+    print('3. 生成可视化...')
+    generate_visualizations(df, analysis_results, output_dir)
+    
+    print('4. 生成报告...')
+    generate_report(analysis_results, output_dir, report_path)
+    
+    print('5. 发送邮件...')
+    send_email(report_path, recipient)
+    
+    print('自动化报告生成完成！')
+
+if __name__ == '__main__':
+    main()`,
+            difficulty: 'advanced'
+          }
+        ]
+      }
+    ]
   }
 ];
+

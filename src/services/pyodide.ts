@@ -1,119 +1,133 @@
-import { loadPyodide, type PyodideInterface } from 'pyodide';
+import { loadPyodide } from 'pyodide';
 
-let pyodide: PyodideInterface | null = null;
-let isLoading = false;
+class PyodideService {
+  private pyodide: any = null;
+  private isLoading: boolean = false;
+  private loadPromise: Promise<any> | null = null;
 
-export async function initPyodide(): Promise<PyodideInterface> {
-  if (pyodide) {
-    return pyodide;
-  }
-
-  if (isLoading) {
-    // Wait for the existing loading to finish
-    return new Promise((resolve) => {
-      const checkInterval = setInterval(() => {
-        if (pyodide) {
-          clearInterval(checkInterval);
-          resolve(pyodide);
-        }
-      }, 100);
-    });
-  }
-
-  isLoading = true;
-
-  try {
-    pyodide = await loadPyodide({
-      indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.29.3/full/',
-    });
-
-    // Load common packages
-    await pyodide.loadPackage(['micropip']);
-    
-    // Try to load pandas and numpy using micropip if they aren't included
-    try {
-      const micropip = pyodide.pyimport('micropip');
-      await micropip.install('pandas numpy matplotlib');
-    } catch (e) {
-      console.log('Failed to install via micropip, falling back to packages', e);
+  // 加载Pyodide
+  async load() {
+    if (this.pyodide) {
+      return this.pyodide;
     }
 
-    // Configure matplotlib to render in the browser
-    pyodide.runPython(`
-      import numpy as np
-      import sys
-      sys.path.insert(0, '/')
-      
-      # Configure matplotlib for headless environment
-      import matplotlib
-      matplotlib.use('Agg')
-    `);
+    if (this.isLoading) {
+      return this.loadPromise;
+    }
 
-    isLoading = false;
-    return pyodide;
-  } catch (error) {
-    isLoading = false;
-    console.error('Failed to initialize Pyodide:', error);
-    throw error;
-  }
-}
+    this.isLoading = true;
+    this.loadPromise = new Promise(async (resolve, reject) => {
+      try {
+        // 使用最新版本的Pyodide
+        this.pyodide = await loadPyodide({
+          indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.29.3/full/'
+        });
 
-export async function runPythonCode(code: string): Promise<{ success: boolean; result: string; error?: string }> {
-  try {
-    const py = await initPyodide();
+        // 预装所有需要的库
+        await this.pyodide.loadPackage([
+          'pandas', 
+          'numpy', 
+          'matplotlib', 
+          'seaborn', 
+          'scikit-learn', 
+          'mlxtend'
+        ]);
 
-    // Capture stdout and stderr
-    py.runPython(`
-      import io
-      import sys
+        // 配置matplotlib以在浏览器中显示
+        this.pyodide.runPython(`
+          import matplotlib.pyplot as plt
+          import matplotlib
+          matplotlib.use('Agg')
+          plt.rcParams['font.sans-serif'] = ['WenQuanYi Zen Hei']
+          plt.ioff()
+        `);
 
-      # Capture output
-      stdout_buffer = io.StringIO()
-      stderr_buffer = io.StringIO()
-      sys.stdout = stdout_buffer
-      sys.stderr = stderr_buffer
-    `);
-
-    // Run user code
-    let result: string = '';
-    try {
-      // Run code and capture return value
-      const returnValue = await py.runPythonAsync(code);
-      if (returnValue !== undefined && returnValue !== null) {
-        result = String(returnValue);
+        resolve(this.pyodide);
+      } catch (error) {
+        console.error('Failed to load Pyodide:', error);
+        reject(error);
+      } finally {
+        this.isLoading = false;
       }
-    } finally {
-      // Get captured output
-      py.runPython(`
-        stdout_content = stdout_buffer.getvalue()
-        stderr_content = stderr_buffer.getvalue()
-        sys.stdout = sys.__stdout__
-        sys.stderr = sys.__stderr__
+    });
+
+    return this.loadPromise;
+  }
+
+  // 运行Python代码
+  async runCode(code: string): Promise<{ output: string; error: string; charts?: string[] }> {
+    try {
+      await this.load();
+
+      // 重定向标准输出
+      let output = '';
+      let error = '';
+      const charts: string[] = [];
+
+      this.pyodide.setStdout((text: string) => {
+        output += text;
+      });
+
+      this.pyodide.setStderr((text: string) => {
+        error += text;
+      });
+
+      // 运行代码
+      this.pyodide.runPython(`
+        import matplotlib.pyplot as plt
+        import io
+        import base64
+
+        # 捕获图表
+        def show_chart():
+            buffer = io.BytesIO()
+            plt.savefig(buffer, format='png')
+            buffer.seek(0)
+            image_base64 = base64.b64encode(buffer.read()).decode('utf-8')
+            plt.close()
+            return image_base64
+
+        # 替换plt.show()
+        original_show = plt.show
+        plt.show = lambda: show_chart()
+
+        # 运行用户代码
+        ${code}
+        
+        # 恢复原始plt.show
+        plt.show = original_show
       `);
-      const stdout = py.globals.get('stdout_content');
-      const stderr = py.globals.get('stderr_content');
 
-      if (stdout) {
-        result = stdout + (result ? '\n' + result : '');
+      // 检查是否有图表生成
+      try {
+        const chartData = this.pyodide.runPython('show_chart()');
+        if (chartData) {
+          charts.push(`data:image/png;base64,${chartData}`);
+        }
+      } catch (e) {
+        // 没有图表生成，忽略错误
       }
-      if (stderr) {
-        return {
-          success: false,
-          result: result,
-          error: stderr,
-        };
-      }
+
+      return { output, error, charts };
+    } catch (err: any) {
+      return { output: '', error: err.message };
     }
+  }
 
-    return {
-      success: true,
-      result: result || '代码执行成功！',
-    };
-  } catch (error) {
-    return {
-      success: false,
-      result: '',
-      error: String(error),
-    };
+  // 获取Pyodide实例
+  getPyodide() {
+    return this.pyodide;
+  }
+
+  // 检查是否已加载
+  isLoaded() {
+    return this.pyodide !== null;
+  }
+
+  // 检查是否正在加载
+  isLoadingStatus() {
+    return this.isLoading;
   }
 }
+
+export const pyodideService = new PyodideService();
