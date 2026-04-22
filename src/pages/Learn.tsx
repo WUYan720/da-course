@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { 
   ArrowLeft, 
@@ -9,21 +9,27 @@ import {
   Award,
   ChevronRight, 
   Clock, 
-  BarChart3, 
-  Code, 
-  Database
+  Loader2
 } from 'lucide-react';
 import { useAppStore } from '../store';
+import { Editor } from '@monaco-editor/react';
+import { runPythonCode, initPyodide } from '../services/pyodide';
 
 type LearningMode = 'learn' | 'exercise' | 'quiz' | 'complete';
+type PyodideStatus = 'idle' | 'loading' | 'ready' | 'error';
 
 const Learn: React.FC = () => {
   const { courseId, lessonIndex } = useParams<{ courseId: string; lessonIndex: string }>();
   const navigate = useNavigate();
-  const { courses, currentCourse, completeLesson, userProgress, isAuthenticated, login } = useAppStore();
+  const { courses, currentCourse, completeLesson, userProgress, isAuthenticated } = useAppStore();
   
   const course = courses.find(c => c.id === courseId) || currentCourse;
   const index = parseInt(lessonIndex || '0');
+  
+  // Pyodide state
+  const [pyodideStatus, setPyodideStatus] = useState<PyodideStatus>('idle');
+  const [pyodideError, setPyodideError] = useState<string | null>(null);
+  const [runningExerciseId, setRunningExerciseId] = useState<string | null>(null);
   
   if (!course || !course.lessons[index]) {
     return (
@@ -46,10 +52,28 @@ const Learn: React.FC = () => {
   const [quizAnswers, setQuizAnswers] = useState<Record<string, number>>({});
   const [quizSubmitted, setQuizSubmitted] = useState(false);
   const [quizScore, setQuizScore] = useState(0);
+  const [codeResults, setCodeResults] = useState<Record<string, string>>({});
+  const [codeErrors, setCodeErrors] = useState<Record<string, string>>({});
 
   const isCompleted = userProgress.find(
     p => p.courseId === course.id && p.lessonId === lesson.id
   )?.completed;
+
+  // Initialize Pyodide when component mounts
+  useEffect(() => {
+    const init = async () => {
+      try {
+        setPyodideStatus('loading');
+        await initPyodide();
+        setPyodideStatus('ready');
+      } catch (error) {
+        setPyodideStatus('error');
+        setPyodideError('Python环境加载失败，请刷新页面重试');
+        console.error('Failed to initialize Pyodide:', error);
+      }
+    };
+    init();
+  }, []);
 
   const handleExerciseAnswer = (exerciseId: string, answer: string) => {
     setExerciseAnswers(prev => ({ ...prev, [exerciseId]: answer }));
@@ -64,12 +88,31 @@ const Learn: React.FC = () => {
     return exercise.answer === answer;
   };
 
-  const submitExercises = () => {
-    if (!isAuthenticated) {
-      alert('请先登录以保存练习结果');
-      navigate('/login');
+  const runCode = async (exerciseId: string, code: string) => {
+    if (pyodideStatus !== 'ready') {
+      setCodeErrors(prev => ({ ...prev, [exerciseId]: 'Python环境正在加载中，请稍候...' }));
       return;
     }
+
+    setRunningExerciseId(exerciseId);
+    setCodeErrors(prev => ({ ...prev, [exerciseId]: '' }));
+    
+    try {
+      const { success, result, error } = await runPythonCode(code);
+      if (success) {
+        setCodeResults(prev => ({ ...prev, [exerciseId]: result }));
+      } else {
+        setCodeErrors(prev => ({ ...prev, [exerciseId]: error || '执行失败' }));
+        setCodeResults(prev => ({ ...prev, [exerciseId]: result }));
+      }
+    } catch (error) {
+      setCodeErrors(prev => ({ ...prev, [exerciseId]: String(error) }));
+    } finally {
+      setRunningExerciseId(null);
+    }
+  };
+
+  const submitExercises = () => {
     setExerciseSubmitted(true);
   };
 
@@ -78,11 +121,6 @@ const Learn: React.FC = () => {
   };
 
   const submitQuiz = () => {
-    if (!isAuthenticated) {
-      alert('请先登录以保存测验成绩和解锁成就');
-      navigate('/login');
-      return;
-    }
     let correct = 0;
     lesson.quiz.forEach(question => {
       if (quizAnswers[question.id] === question.correctAnswer) {
@@ -92,7 +130,9 @@ const Learn: React.FC = () => {
     const score = Math.round((correct / lesson.quiz.length) * 100);
     setQuizScore(score);
     setQuizSubmitted(true);
-    completeLesson(course.id, lesson.id, score);
+    if (isAuthenticated) {
+      completeLesson(course.id, lesson.id, score);
+    }
     setMode('complete');
   };
 
@@ -193,24 +233,183 @@ const Learn: React.FC = () => {
 
         <div className="p-8">
           {mode === 'learn' && (
-            <div className="prose max-w-none space-y-8">
-              {lesson.video && (
-                <div className="rounded-2xl overflow-hidden shadow-xl border border-gray-200">
-                  <div className="aspect-video relative">
-                    <iframe
-                      src={lesson.video}
-                      title={lesson.title}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="w-full h-full"
-                    />
-                  </div>
+            <div className="space-y-8">
+              {/* 知识点讲解展示 */}
+              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-200">
+                <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                  <BookOpen className="h-6 w-6 mr-2 text-blue-600" />
+                  知识点讲解
+                </h3>
+                <div className="text-gray-700">
+                  <p className="mb-3">本课时将详细讲解以下核心知识点：</p>
+                  <ul className="list-disc ml-6 space-y-2">
+                    <li>核心概念与理论基础</li>
+                    <li>实际应用场景与案例分析</li>
+                    <li>常见问题与解决方案</li>
+                    <li>最佳实践与技巧分享</li>
+                  </ul>
                 </div>
-              )}
-              <div className="whitespace-pre-line text-gray-800 text-lg leading-relaxed p-6 bg-gray-50 rounded-xl border border-gray-100">
-                {lesson.content}
               </div>
+              
+              {/* 内容展示 */}
+              <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden p-6">
+                <div className="prose max-w-none text-gray-700">
+                  {(() => {
+                    const lines = lesson.content.split('\n');
+                    const elements = [];
+                    let inCodeBlock = false;
+                    let codeContent = '';
+                    let listItems = [];
+                    let currentParagraph = '';
+
+                    lines.forEach((line, index) => {
+                      const trimmedLine = line.trim();
+                       
+                      // 处理代码块
+                      if (trimmedLine === '```') {
+                        if (inCodeBlock) {
+                          // 代码块结束
+                          elements.push(
+                            <pre key={"code-" + index} className="bg-gray-100 p-4 rounded-lg overflow-x-auto my-4">
+                              <code>{codeContent}</code>
+                            </pre>
+                          );
+                          codeContent = '';
+                          inCodeBlock = false;
+                        } else {
+                          // 代码块开始
+                          inCodeBlock = true;
+                        }
+                        return;
+                      }
+
+                      if (inCodeBlock) {
+                        codeContent += line + '\n';
+                        return;
+                      }
+
+                      // 处理空行
+                      if (!trimmedLine) {
+                        // 处理当前段落
+                        if (currentParagraph) {
+                          elements.push(<p key={"p-" + index}>{currentParagraph}</p>);
+                          currentParagraph = '';
+                        }
+                        // 处理列表
+                        if (listItems.length > 0) {
+                          elements.push(
+                            <ul key={"ul-" + index} className="my-4">
+                              {listItems.map((item, i) => (
+                                <li key={"li-" + i} className="list-disc ml-6 my-1">
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
+                          );
+                          listItems = [];
+                        }
+                        elements.push(<br key={"br-" + index} />);
+                        return;
+                      }
+
+                      // 处理标题
+                      if (trimmedLine.startsWith('## ')) {
+                        // 处理当前内容
+                        if (currentParagraph) {
+                          elements.push(<p key={`p-${index}`}>{currentParagraph}</p>);
+                          currentParagraph = '';
+                        }
+                        if (listItems.length > 0) {
+                          elements.push(
+                            <ul key={"ul-" + index} className="my-4">
+                              {listItems.map((item, i) => (
+                                <li key={"li-" + i} className="list-disc ml-6 my-1">
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
+                          );
+                          listItems = [];
+                        }
+                        elements.push(
+                          <h2 key={"h2-" + index} className="text-2xl font-bold text-gray-800 mt-8 mb-4">
+                            {trimmedLine.replace('## ', '')}
+                          </h2>
+                        );
+                        return;
+                      }
+
+                      if (trimmedLine.startsWith('### ')) {
+                        // 处理当前内容
+                        if (currentParagraph) {
+                          elements.push(<p key={`p-${index}`}>{currentParagraph}</p>);
+                          currentParagraph = '';
+                        }
+                        if (listItems.length > 0) {
+                          elements.push(
+                            <ul key={"ul-" + index} className="my-4">
+                              {listItems.map((item, i) => (
+                                <li key={"li-" + i} className="list-disc ml-6 my-1">
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
+                          );
+                          listItems = [];
+                        }
+                        elements.push(
+                          <h3 key={"h3-" + index} className="text-xl font-bold text-gray-800 mt-6 mb-3">
+                            {trimmedLine.replace('### ', '')}
+                          </h3>
+                        );
+                        return;
+                      }
+
+                      // 处理列表项
+                      if (trimmedLine.startsWith('- ')) {
+                        // 处理当前段落
+                        if (currentParagraph) {
+                          elements.push(<p key={`p-${index}`}>{currentParagraph}</p>);
+                          currentParagraph = '';
+                        }
+                        listItems.push(trimmedLine.replace('- ', ''));
+                        return;
+                      }
+
+                      // 处理普通段落
+                      currentParagraph += (currentParagraph ? ' ' : '') + trimmedLine;
+                    });
+
+                    // 处理剩余内容
+                    if (currentParagraph) {
+                      elements.push(<p key="final-p">{currentParagraph}</p>);
+                    }
+                    if (listItems.length > 0) {
+                      elements.push(
+                        <ul key="final-ul" className="my-4">
+                          {listItems.map((item, i) => (
+                            <li key={`final-li-${i}`} className="list-disc ml-6 my-1">
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      );
+                    }
+
+                    return elements;
+                  })()}
+                </div>
+                
+                {/* 练习数量标签 */}
+                <div className="mt-8 flex items-center gap-2">
+                  <Pencil className="h-4 w-4 text-green-600" />
+                  <span className="text-sm font-medium text-gray-600">配套练习：</span>
+                  <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
+                    {lesson.exercises.length}道
+                  </span>
+                </div>
+              </div>
+              
               <div className="mt-8 flex justify-end">
                 <button
                   onClick={() => setMode('exercise')}
@@ -266,6 +465,80 @@ const Learn: React.FC = () => {
                     </div>
                   )}
 
+                  {exercise.type === 'short-answer' && (
+                    <div className="mt-4 space-y-3">
+                      {/* Pyodide status indicator */}
+                      <div className="flex items-center gap-2 mb-2 text-sm text-gray-600">
+                        {pyodideStatus === 'loading' && (
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                        )}
+                        <span>
+                          {pyodideStatus === 'loading' 
+                            ? '正在加载Python环境...' 
+                            : pyodideStatus === 'ready' 
+                            ? 'Python环境已就绪' 
+                            : pyodideStatus === 'error' 
+                            ? '环境加载失败' 
+                            : ''}
+                        </span>
+                      </div>
+                      
+                      {/* Monaco Code Editor */}
+                      {!exerciseSubmitted && (
+                        <div className="border-2 border-gray-200 rounded-lg overflow-hidden">
+                          <Editor
+                            height="300px"
+                            defaultLanguage="python"
+                            value={exerciseAnswers[exercise.id] || '# 请在此编写代码'}
+                            onChange={(value) => handleExerciseAnswer(exercise.id, value || '')}
+                            theme="vs-light"
+                            options={{
+                              minimap: { enabled: false },
+                              fontSize: 14,
+                              tabSize: 4,
+                              wordWrap: 'on',
+                              lineNumbers: 'on',
+                              scrollBeyondLastLine: false,
+                            }}
+                          />
+                        </div>
+                      )}
+                      
+                      {!exerciseSubmitted && (
+                        <button
+                          onClick={() => runCode(exercise.id, exerciseAnswers[exercise.id] || '')}
+                          disabled={pyodideStatus !== 'ready' || runningExerciseId === exercise.id}
+                          className="bg-gradient-to-r from-green-600 to-emerald-700 text-white px-4 py-2 rounded-lg font-medium hover:from-green-700 hover:to-emerald-800 transition-all shadow-md disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                        >
+                          {runningExerciseId === exercise.id ? (
+                            <>
+                              <Loader2 className="h-4 w-4 animate-spin" />
+                              正在运行...
+                            </>
+                          ) : (
+                            '运行代码'
+                          )}
+                        </button>
+                      )}
+                      
+                      {/* Code execution results */}
+                      {codeResults[exercise.id] && (
+                        <div className="mt-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                          <h5 className="text-sm font-semibold text-gray-700 mb-2">运行结果：</h5>
+                          <pre className="text-sm text-gray-800 whitespace-pre-wrap">{codeResults[exercise.id]}</pre>
+                        </div>
+                      )}
+                      
+                      {/* Code execution errors */}
+                      {codeErrors[exercise.id] && (
+                        <div className="mt-3 p-3 bg-red-50 rounded-lg border border-red-200">
+                          <h5 className="text-sm font-semibold text-red-700 mb-2">错误信息：</h5>
+                          <pre className="text-sm text-red-800 whitespace-pre-wrap">{codeErrors[exercise.id]}</pre>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                   {exerciseSubmitted && (
                     <div className={`mt-4 p-4 rounded-lg ${
                       checkExerciseAnswer(exercise.id, exerciseAnswers[exercise.id] || '')
@@ -278,6 +551,12 @@ const Learn: React.FC = () => {
                           : '✗ 回答错误'}
                       </p>
                       <p className="mt-2">{exercise.explanation}</p>
+                      {exercise.type === 'short-answer' && (
+                        <div className="mt-3 p-3 bg-white rounded-lg border border-gray-200">
+                          <p className="text-sm font-medium text-gray-700 mb-2">参考代码：</p>
+                          <pre className="text-sm bg-gray-100 p-3 rounded overflow-x-auto">{exercise.answer}</pre>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>

@@ -7,14 +7,72 @@ const Profile: React.FC = () => {
   const navigate = useNavigate();
   const { user, userProgress, courses, userAchievements, achievements, isAuthenticated } = useAppStore();
 
-  if (!isAuthenticated || !user) {
-    navigate('/login');
-    return null;
-  }
-
   const completedLessons = userProgress.filter(p => p.completed).length;
   const totalLessons = courses.reduce((sum, course) => sum + course.lessons.length, 0);
   const unlockedAchievements = userAchievements.length;
+
+  if (!isAuthenticated || !user) {
+    return (
+      <div className="max-w-4xl mx-auto space-y-8">
+        <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div className="bg-gradient-to-r from-blue-600 to-indigo-700 p-8 text-white">
+            <div className="flex items-center space-x-6">
+              <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center">
+                <User className="h-12 w-12" />
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold">未登录用户</h1>
+                <p className="text-blue-100">登录后查看个人资料</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="p-8 text-center">
+            <p className="text-xl text-gray-600 mb-6">登录后可以查看您的学习进度和成就</p>
+            <button
+              onClick={() => navigate('/login')}
+              className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-8 py-3 rounded-xl font-semibold hover:from-blue-700 hover:to-indigo-800 transition-all shadow-lg"
+            >
+              登录/注册
+            </button>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-lg p-6">
+          <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+            <BookOpen className="h-6 w-6 mr-2 text-blue-600" />
+            课程概览
+          </h2>
+          <div className="space-y-4">
+            {courses.map(course => (
+              <div key={course.id} className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="font-medium text-gray-800">{course.title}</span>
+                  <span className="text-blue-600">{course.lessons.length} 课时</span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div
+                    className="bg-gradient-to-r from-blue-500 to-indigo-600 h-2 rounded-full"
+                    style={{ width: '0%' }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-lg p-6">
+          <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+            <Award className="h-6 w-6 mr-2 text-yellow-600" />
+            成就系统
+          </h2>
+          <div className="text-center text-gray-500 py-8">
+            登录后可以查看和解锁成就
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">

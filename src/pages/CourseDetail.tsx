@@ -163,49 +163,142 @@ const CourseDetail: React.FC = () => {
               <Map className="h-5 w-5 text-blue-600" />
               学习路径
             </h3>
-            <div className="relative">
-              <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200"></div>
-              <div className="space-y-6">
-                {course.lessons.map((lesson, index) => {
-                  const progress = getLessonProgress(lesson.id);
-                  return (
-                    <div key={lesson.id} className="relative pl-12">
-                      <div className={`absolute left-2 w-6 h-6 rounded-full flex items-center justify-center transition-all ${
-                        progress?.completed
-                          ? 'bg-green-500 text-white'
-                          : 'bg-gray-200 text-gray-500'
-                      }`}>
-                        {progress?.completed ? (
-                          <CheckCircle className="h-4 w-4" />
-                        ) : (
-                          index + 1
-                        )}
-                      </div>
-                      <div className={`p-4 rounded-xl border-2 transition-all ${
-                        progress?.completed
-                          ? 'border-green-200 bg-green-50'
-                          : 'border-gray-100 hover:border-blue-200 hover:bg-blue-50'
-                      }`}>
-                        <h4 className="font-semibold text-gray-800">
-                          第 {index + 1} 课: {lesson.title}
-                        </h4>
-                        {progress?.score !== undefined && (
-                          <div className="text-blue-600 text-sm mt-1">
-                            得分: {progress.score}%
-                          </div>
-                        )}
-                        <div className="mt-3">
-                          <Link
-                            to={`/courses/${course.id}/learn/${index}`}
-                            className="text-blue-600 hover:text-blue-700 font-medium flex items-center"
-                          >
-                            开始学习 <ChevronRight className="h-4 w-4 ml-1" />
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
+            
+            {/* 数据结构化：模块与课时 */}
+            <div className="space-y-6">
+              {/* 平台介绍与技术栈概述 */}
+              <div className="border border-gray-200 rounded-xl overflow-hidden">
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 cursor-pointer">
+                  <h4 className="font-bold text-gray-800 text-lg">模块：平台介绍与技术栈概述</h4>
+                </div>
+                <div className="p-4 space-y-3">
+                  <div className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50">
+                    <div>课时 1：平台特色与优势</div>
+                    <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
+                      练习题：6道
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50">
+                    <div>课时 2：技术栈覆盖</div>
+                    <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
+                      练习题：5道
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50">
+                    <div>课时 3：学习路径规划</div>
+                    <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
+                      练习题：7道
+                    </span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Excel 模块 */}
+              <div className="border border-gray-200 rounded-xl overflow-hidden">
+                <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-4 cursor-pointer">
+                  <h4 className="font-bold text-gray-800 text-lg">模块：Excel 模块</h4>
+                </div>
+                <div className="p-4 space-y-3">
+                  <div className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50">
+                    <div>课时 1：基础操作与快捷键</div>
+                    <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
+                      练习题：8道
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50">
+                    <div>课时 2：常用函数应用</div>
+                    <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
+                      练习题：7道
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50">
+                    <div>课时 3：数据透视表与 Power Query</div>
+                    <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
+                      练习题：6道
+                    </span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* SQL 模块 */}
+              <div className="border border-gray-200 rounded-xl overflow-hidden">
+                <div className="bg-gradient-to-r from-purple-50 to-violet-50 p-4 cursor-pointer">
+                  <h4 className="font-bold text-gray-800 text-lg">模块：SQL 模块</h4>
+                </div>
+                <div className="p-4 space-y-3">
+                  <div className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50">
+                    <div>课时 1：数据库基础与 SQL 语法</div>
+                    <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
+                      练习题：5道
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50">
+                    <div>课时 2：基础查询与多表连接</div>
+                    <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
+                      练习题：8道
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50">
+                    <div>课时 3：窗口函数与复杂查询</div>
+                    <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
+                      练习题：7道
+                    </span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Python 数据分析模块 */}
+              <div className="border border-gray-200 rounded-xl overflow-hidden">
+                <div className="bg-gradient-to-r from-yellow-50 to-amber-50 p-4 cursor-pointer">
+                  <h4 className="font-bold text-gray-800 text-lg">模块：Python 数据分析模块（核心）</h4>
+                </div>
+                <div className="p-4 space-y-3">
+                  <div className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50">
+                    <div>课时 1：Python 基础语法</div>
+                    <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
+                      练习题：6道
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50">
+                    <div>课时 2：NumPy 数值计算与 Pandas 数据处理</div>
+                    <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
+                      练习题：8道
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50">
+                    <div>课时 3：数据可视化与全流程实战</div>
+                    <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
+                      练习题：7道
+                    </span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* 统计与业务分析 */}
+              <div className="border border-gray-200 rounded-xl overflow-hidden">
+                <div className="bg-gradient-to-r from-red-50 to-rose-50 p-4 cursor-pointer">
+                  <h4 className="font-bold text-gray-800 text-lg">模块：统计与业务分析</h4>
+                </div>
+                <div className="p-4 space-y-3">
+                  <div className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50">
+                    <div>课时 1：描述性统计与分析方法</div>
+                    <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
+                      练习题：5道
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50">
+                    <div>课时 2：指标体系搭建与分析报告撰写</div>
+                    <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
+                      练习题：6道
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50">
+                    <div>课时 3：AI 赋能分析与商业场景应用</div>
+                    <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
+                      练习题：7道
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
